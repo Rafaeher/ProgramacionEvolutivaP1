@@ -23,8 +23,14 @@ public class DecodificadorBinarioReal extends DecodificadorEslabon
             {
                 int genesInt = GenBinario.genAInt(genotipo.getGen(i).getGen());
                 int numGenes = genotipo.getGen(i).getTamGen();
+               
+               try{
+            	   solucion.add(fenotipo.getCaracteristicas().get(i).getMin() + genesInt * (fenotipo.getCaracteristicas().get(i).getMax() - fenotipo.getCaracteristicas().get(i).getMin()) / (Math.pow(2, numGenes) - 1));
+               }
+               catch(Exception e){
+            	   System.out.println(e.getMessage());
+               }
                 
-                solucion.add(fenotipo.getCaracteristicas().get(i).getMin() + genesInt * (fenotipo.getCaracteristicas().get(i).getMax() - fenotipo.getCaracteristicas().get(i).getMin()) / (Math.pow(2, numGenes) - 1));
             }
 
             return solucion;

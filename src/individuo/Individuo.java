@@ -5,13 +5,12 @@ import java.util.ArrayList;
 
 import configuracion.Mutacion_enum;
 import decodificador.Decodificador;
-import genotipo.Genotipo;
 import mutacion.FactoriaMutacion;
 import mutacion.Mutacion;
 
-public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
+public class Individuo<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
 {
-	GenotipoI genotipo;
+	Genotipo genotipo;
 	Fenotipo fenotipo;
 	Fitness fitness;
 
@@ -25,12 +24,12 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	 *
 	 * @param genotipoE: genotipo de Entrada
 	 */
-	public Individuo(GenotipoI genotipoE)
+	public Individuo(Genotipo genotipoE)
 	{
 		genotipo = genotipoE;
 	}
 
-	public Individuo(GenotipoI g, Fenotipo f, Fitness fit) {
+	public Individuo(Genotipo g, Fenotipo f, Fitness fit) {
 		genotipo =g;
 		fenotipo = f;
 		fitness = fit;
@@ -41,7 +40,7 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	 * @param otro: un individuo
 	 * @return true si el individuo actual es peor que el otro, false en otro caso
 	 */
-	public boolean peor(Individuo<GenotipoI, Fenotipo, Fitness> otro)
+	public boolean peor(Individuo<Genotipo, Fenotipo, Fitness> otro)
 	{
 		return fitness.compareTo(otro.fitness) < 0;
 	}
@@ -49,11 +48,11 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	/**
 	 * Introduce una mutación en el genotipo del individuo
 	 */
-	public Individuo<GenotipoI,Fenotipo,Fitness> muta(Mutacion_enum tipoMutacion, double prob_mutacion)
+	public Individuo<Genotipo,Fenotipo,Fitness> muta(Mutacion_enum tipoMutacion, double prob_mutacion)
 	{
 		
-		FactoriaMutacion<GenotipoI,Fenotipo,Fitness> f = new FactoriaMutacion<GenotipoI,Fenotipo,Fitness>();
-		Mutacion<GenotipoI,Fenotipo,Fitness> mutacion = f.getMutacion(tipoMutacion);
+		FactoriaMutacion<Genotipo,Fenotipo,Fitness> f = new FactoriaMutacion<Genotipo,Fenotipo,Fitness>();
+		Mutacion<Genotipo,Fenotipo,Fitness> mutacion = f.getMutacion(tipoMutacion);
 		mutacion.muta(genotipo,prob_mutacion);
 		return this;
 	}
@@ -75,10 +74,9 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	 * 
 	 * @return genotipo
 	 */
-	public GenotipoI getGenotipo()
+	public Genotipo getGenotipo()
 	{
- 
-		return (GenotipoI) genotipo.clone();
+		return genotipo;
 	}
 
 	/**
@@ -86,7 +84,7 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	 *
 	 * @param genotipoE: genotipo de entrada
 	 */
-	public void setGenotipo(GenotipoI genotipoE)
+	public void setGenotipo(Genotipo genotipoE)
 	{
 		genotipo = genotipoE;
 	}
@@ -122,10 +120,10 @@ public class Individuo<GenotipoI extends Genotipo, Fenotipo, Fitness extends Com
 	{
 		return fitness;
 	}
-	
 	public void setFenotipo(Fenotipo fenotipoE)
 	{
 		fenotipo = fenotipoE;
 	}
+
 	
 }

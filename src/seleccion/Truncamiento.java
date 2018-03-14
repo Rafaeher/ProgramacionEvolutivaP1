@@ -3,18 +3,17 @@ package seleccion;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
-import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class Truncamiento<GenotipoT extends Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
-		implements Seleccion<GenotipoT, Fenotipo, Fitness>
+public class Truncamiento<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
+		implements Seleccion<Genotipo, Fenotipo, Fitness>
 {
 	private boolean maximizar;
 
 
 	@Override
-	public ArrayList<Individuo<GenotipoT, Fenotipo, Fitness>> Selecciona(
-			ArrayList<Individuo<GenotipoT, Fenotipo, Fitness>> poblacion, Configuracion c, boolean maximizar) {
+	public ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> Selecciona(
+			ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, Configuracion c, boolean maximizar) {
 		this.maximizar = maximizar;
 		return null;
 	}

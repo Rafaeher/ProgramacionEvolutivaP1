@@ -10,11 +10,10 @@ import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
 
-public class PoblacionInicialF3Binario extends PoblacionInicialF3
-{
+public class PoblacionInicialF3Binario implements PoblacionInicial {
 
 	@Override
-	protected ArrayList<Individuo<?, ?, ?>> getPoblacion(Configuracion config)
+	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config)
 	{
 		ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> poblacion= new ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>>();
 		//int num_genes_por_cromosoma = 1;

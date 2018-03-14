@@ -13,6 +13,6 @@ public abstract class Vista {
 		return instance;
 	}
 	public abstract void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
-			double[] y_mejorAbsoluto, JFrame jf);
+			double[] y_mejorAbsoluto,double[] y_media, JFrame jf);
 	
 }

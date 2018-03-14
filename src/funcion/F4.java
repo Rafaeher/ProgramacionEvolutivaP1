@@ -1,13 +1,15 @@
 package funcion;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
-import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class F4 <GenotipoF extends Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
+public class F4 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
 
 	private boolean maximizar = false;
 	
@@ -44,9 +46,36 @@ public class F4 <GenotipoF extends Genotipo> extends Funcion<Genotipo, FenotipoR
 	}
 
 	@Override
+	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, int tam) {
+
+		TreeMap<Double,Individuo> treeParaOrdenar = new TreeMap<Double,Individuo>();
+		for(int i = 0; i < poblacion.size(); i++){
+			treeParaOrdenar.put(poblacion.get(i).getFitness(), poblacion.get(i));
+		}
+		ArrayList<Individuo> solucion = new ArrayList<Individuo>();
+		
+		int i = 0;
+		Iterator it = treeParaOrdenar.entrySet().iterator();
+		while (it.hasNext() && i < tam) {
+			Map.Entry e = (Map.Entry) it.next();
+			Individuo<Genotipo, FenotipoReal, Double> copia = (Individuo<Genotipo, FenotipoReal, Double>) e.getValue();
+			Individuo<Genotipo, FenotipoReal, Double> individuoseleccionado = new Individuo<Genotipo, FenotipoReal, Double>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
+			solucion.add(individuoseleccionado);
+		}
+		return solucion;
+	}
+
+	@Override
 	public boolean getMaximizar()
 	{
 		return maximizar;
+	}
+
+	@Override
+	public Object colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
+			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

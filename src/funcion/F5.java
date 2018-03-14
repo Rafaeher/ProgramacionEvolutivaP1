@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
-import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class F5 <GenotipoF extends Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
+public class F5 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
 
 	private boolean maximizar = false;
 	
@@ -44,9 +43,22 @@ public class F5 <GenotipoF extends Genotipo> extends Funcion<Genotipo, FenotipoR
 	}
 
 	@Override
+	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, int tam) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public boolean getMaximizar() {
 		// TODO Auto-generated method stub
 		return maximizar;
+	}
+
+	@Override
+	public Object colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
+			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

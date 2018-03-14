@@ -4,7 +4,7 @@ import genotipo.genes.GenBinario;
 
 import java.util.ArrayList;
 
-public class GenotipoBinario implements Genotipo
+public class GenotipoBinario
 {
 
     ArrayList<GenBinario> genes;
@@ -48,15 +48,6 @@ public class GenotipoBinario implements Genotipo
 	public void setGenes(ArrayList<GenBinario> genesE)
 	{
 		genes = genesE;
-	}
-	
-
-	@Override
-	public Genotipo clone()
-	{	
-		@SuppressWarnings("unchecked")
-		ArrayList<GenBinario> genesClone = (ArrayList<GenBinario>) genes.clone();
-		return new GenotipoBinario(genesClone);
 	}
 
 }

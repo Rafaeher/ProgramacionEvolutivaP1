@@ -3,40 +3,46 @@ package funcion;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
-import genotipo.Genotipo;
 import individuo.Individuo;
 import reproduccion.FactoriaReproduccion;
 import reproduccion.Reproduccion;
 import seleccion.FactoriaSeleccion;
 import seleccion.Seleccion;
 
-public abstract class Funcion<GenotipoF extends Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
+public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
 {
-	private ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> poblacion;
+	private ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion;
 	private Configuracion configuracion;
-	protected Individuo<GenotipoF, Fenotipo, Fitness> mejorIndividuo;
+	protected Individuo<Genotipo, Fenotipo, Fitness> mejorIndividuo;
 
 	private double[] x_generaciones;
 	private double[] y_mejor_iteracion;
 	private double[] y_mejor_total;
+	private double[] y_media;
 	private double mejorAbsoluto = 0;
 
-	public Funcion(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> poblacion, Configuracion configuracion)
+	public Funcion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, Configuracion configuracion)
 	{
 		this.poblacion = poblacion;
 		this.configuracion = configuracion;
 		this.x_generaciones = new double[configuracion.getNum_generaciones()];
 		this.y_mejor_iteracion = new double[configuracion.getNum_generaciones()];
 		this.y_mejor_total = new double[configuracion.getNum_generaciones()];
+		this.y_media = new double[configuracion.getNum_generaciones()];
 	}
 	
 	public void algoritmoGenetico()
 	{
-		
+		ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> elite = null;
 		int it = 0;
 		algEvalua(poblacion);
 		while (it < configuracion.getNum_generaciones() -1)
         {
+			
+			if(configuracion.getElite() > 0){
+				System.out.println("Elite: " + configuracion.getElite());
+				elite = (ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>)calculaLosMejoresDeLaPoblacion(poblacion,configuracion.getElite());
+			}
 			it++;
 			//seleccion
 			algSeleccion(poblacion);
@@ -46,33 +52,44 @@ public abstract class Funcion<GenotipoF extends Genotipo, Fenotipo, Fitness exte
 			//Mutacion
 			if(configuracion.getProb_mutacion() > 0)
 			algMutacion(poblacion);
-		
-			System.out.println(it);
+			if(configuracion.getElite() > 0){
+				algEvalua(poblacion);
+				this.poblacion = (ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>)colocaLaelite(poblacion,elite);
+			}
+			try{
+				System.out.println("Iteracio " + it + " elite "+ elite.get(0).getFitness() + " " + elite.get(1).getFitness());
+			}
+			catch(Exception e){
+				System.out.println("ERROR");
+			}
+			
 			pintar(it);
 			algEvalua(poblacion);
+			//System.out.println(it);
 		}
+		System.out.println(it);
 	}
 
-	private void algSeleccion(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> individuos_iniciales)
+	private void algSeleccion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> individuos_iniciales)
     {
-		FactoriaSeleccion<GenotipoF, Fenotipo, Fitness> factoriaSeleccion = new FactoriaSeleccion<GenotipoF, Fenotipo, Fitness>();
+		FactoriaSeleccion<Genotipo, Fenotipo, Fitness> factoriaSeleccion = new FactoriaSeleccion<Genotipo, Fenotipo, Fitness>();
 
 		//Obtenemos el mecanismo de seleccion
-		Seleccion<GenotipoF, Fenotipo, Fitness> seleccion = factoriaSeleccion.getSeleccion(this.configuracion.getSeleccion_seleccionada());
+		Seleccion<Genotipo, Fenotipo, Fitness> seleccion = factoriaSeleccion.getSeleccion(this.configuracion.getSeleccion_seleccionada());
 
 		//Seleccionamos los individuos por el mecanismo adecuado
-		poblacion = seleccion.Selecciona(individuos_iniciales, configuracion, getMaximizar());
+		this.poblacion = seleccion.Selecciona(individuos_iniciales, configuracion, getMaximizar());
 	}
 
-	private void algReproduccion(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> seleccionados){
-		FactoriaReproduccion<GenotipoF, Fenotipo, Fitness> factoriaReproduccion = new FactoriaReproduccion<GenotipoF, Fenotipo, Fitness>();
+	private void algReproduccion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> seleccionados){
+		FactoriaReproduccion<Genotipo, Fenotipo, Fitness> factoriaReproduccion = new FactoriaReproduccion<Genotipo, Fenotipo, Fitness>();
 		//Obtenemos el mecanismo de reproduccion
-		Reproduccion<GenotipoF, Fenotipo, Fitness> reproduccion = factoriaReproduccion.getReproduccion(this.configuracion.getReproduccion_seleccionada());
+		Reproduccion<Genotipo, Fenotipo, Fitness> reproduccion = factoriaReproduccion.getReproduccion(this.configuracion.getReproduccion_seleccionada());
 		//Reproducimos los individuos y devolvemos la poblacion con los individuos nuevos en ella
-		poblacion = reproduccion.reproduce(seleccionados, configuracion);
+		this.poblacion = reproduccion.reproduce(seleccionados, configuracion);
 	}
 
-	private void algMutacion(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> reproducidos)
+	private void algMutacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> reproducidos)
 	{
 		//FactoriaMutacion factoriaMutacion = FactoriaMutacion.instanciar();
 		//Obtenemos el mecanismo de muta
@@ -85,14 +102,16 @@ public abstract class Funcion<GenotipoF extends Genotipo, Fenotipo, Fitness exte
 	}
 	
 	private void pintar(int it) {
+		algEvalua(poblacion);
 		//Para pintar
 		x_generaciones[it] = it;
-		Double mejor_poblacion = (Double)calculaElMejorDeLaPoblacion(poblacion).getFitness();
+		ArrayList<Individuo> aux = (ArrayList<Individuo>)calculaLosMejoresDeLaPoblacion(poblacion,1);
+		Double mejor_poblacion = (Double)aux.get(0).getFitness();
 		try{
 			y_mejor_iteracion[it] = mejor_poblacion;
 		}
 		catch(Exception e){
-			System.err.println("Excepción en pintar de Funcion");
+			System.out.println("la");
 		}
 		
 		if(getMaximizar()){
@@ -107,6 +126,15 @@ public abstract class Funcion<GenotipoF extends Genotipo, Fenotipo, Fitness exte
 		}
 		
 		y_mejor_total[it] = mejorAbsoluto;
+		y_media[it] = calculaMedia();
+	}
+	
+	private double calculaMedia(){
+		double total = 0;
+		for(int i = 0; i < poblacion.size(); i++){
+			total = total + (Double)poblacion.get(i).getFitness();
+		}
+		return (total / poblacion.size());
 	}
 
 	public double[] getGeneraciones() {
@@ -118,20 +146,12 @@ public abstract class Funcion<GenotipoF extends Genotipo, Fenotipo, Fitness exte
 	public double[] gety_mejor_total(){
 		return y_mejor_total;
 	}
-	
-	
-	public Individuo<GenotipoF, Fenotipo, Fitness> calculaElMejorDeLaPoblacion(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> poblacion)
-	{
-		Individuo<GenotipoF, Fenotipo, Fitness> mejor = poblacion.get(0);
-		
-		for(int i = 1; i < poblacion.size(); i++)
-			if (mejor.peor(poblacion.get(i)))
-				mejor = poblacion.get(i);
-		
-		return mejor;
+	public double[] getMedia() {
+		return y_media;
 	}
-	
-	public abstract void algEvalua(ArrayList<Individuo<GenotipoF, Fenotipo, Fitness>> poblacion);
-
+	public abstract void algEvalua(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion);
+	public abstract Object colocaLaelite(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, 
+			ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> elite);
+	public abstract Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam);
 	public abstract boolean getMaximizar();
 }
