@@ -3,7 +3,6 @@ package poblacionInicial;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
-import fenotipo.FenotipoReal;
 import individuo.Individuo;
 
 public abstract class PoblacionInicialF1 implements PoblacionInicial
