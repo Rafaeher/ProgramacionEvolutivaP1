@@ -11,7 +11,7 @@ import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
 
-public class PoblacionInicial4Binario extends PoblacionInicialF4 {
+public class PoblacionInicialF4Binario extends PoblacionInicialF4 {
 
 	@SuppressWarnings("unchecked")
 	@Override
