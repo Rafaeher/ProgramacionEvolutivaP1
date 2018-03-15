@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import fenotipo.caracteristica.FenotipoGenReal;
 
-public class FenotipoReal
+public class FenotipoReal implements Fenotipo
 {
     ArrayList<FenotipoGenReal> caracteristicas; // Las características del fenotipo
 
@@ -53,6 +53,14 @@ public class FenotipoReal
     {
     	FenotipoGenReal fenotipoGen = caracteristicas.get(indice);
     	fenotipoGen.setFenotipodelgen(valor);
+    }
+    
+    @Override
+    public FenotipoReal clone()
+    {
+    	FenotipoReal clon = new FenotipoReal();
+    	clon.setCaracteristicas(caracteristicas);
+    	return clon;
     }
 
 }

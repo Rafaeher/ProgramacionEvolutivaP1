@@ -7,19 +7,21 @@ import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
+import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class F3 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {	
+public class F3 <GenotipoF3 extends Genotipo> extends Funcion<GenotipoF3, FenotipoReal, Double>
+{	
 
 	private boolean maximizar = true;
 	
-	public F3(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
+	public F3(ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
 		super(poblacion, configuracion);
 	}
 
 	@Override
-	public void algEvalua(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion) {
-		Individuo<Genotipo, FenotipoReal, Double> individuo_evaluar = null;
+	public void algEvalua(ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> poblacion) {
+		Individuo<GenotipoF3, FenotipoReal, Double> individuo_evaluar = null;
 		for(int i = 0; i < poblacion.size(); i++)
 		{
 			individuo_evaluar = poblacion.get(i);
@@ -45,9 +47,9 @@ public class F3 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 	}
 
 	@Override
-	public ArrayList<Individuo<Genotipo, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
-			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
-		ArrayList<Individuo<Genotipo, FenotipoReal, Double>> solucion = new ArrayList<Individuo<Genotipo, FenotipoReal, Double>>(
+	public ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> poblacion,
+			ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> elite) {
+		ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>> solucion = new ArrayList<Individuo<GenotipoF3, FenotipoReal, Double>>(
 				poblacion);
 		/*
 		 * Double guarda el fitness integer guarda la posicion en el array El
@@ -64,8 +66,8 @@ public class F3 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 		Iterator it = treeParaOrdenar.entrySet().iterator();
 		while (it.hasNext() && i < elite.size()) {
 			Map.Entry e = (Map.Entry) it.next();
-			Individuo<Genotipo, FenotipoReal, Double> copia = elite.get(i);
-			Individuo<Genotipo, FenotipoReal, Double> individuoseleccionado = new Individuo<Genotipo, FenotipoReal, Double>(
+			Individuo<GenotipoF3, FenotipoReal, Double> copia = elite.get(i);
+			Individuo<GenotipoF3, FenotipoReal, Double> individuoseleccionado = new Individuo<GenotipoF3, FenotipoReal, Double>(
 					copia.getGenotipo(), copia.getFenotipo(), copia.getFitness());
 			solucion.set((int) e.getValue(), individuoseleccionado);
 

@@ -9,10 +9,11 @@ import individuo.Individuo;
 import reproduccion.Reproduccion;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
+import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
 
-public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
+public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Comparable<Fitness>>
 		implements Reproduccion<GenotipoBinario, FenotipoReal, Fitness> {
 
 
@@ -29,7 +30,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 				if (random <= c.getCruceporcentaje()) {
 					if (p.get(i) != null && p.get(i + 1) != null) {
 						// --------
-						Individuo<GenotipoBinario, Fenotipo, Fitness> copia = (Individuo<GenotipoBinario, Fenotipo, Fitness>) p
+						Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
 								.get(i);
 						GenotipoBinario genotipo_aux = (GenotipoBinario) copia.getGenotipo();
 
@@ -45,7 +46,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 						Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
 								genotipo_sol, fenotipo_sol, (Fitness) fitness);
 						// ---------
-						Individuo<GenotipoBinario, Fenotipo, Fitness> copia1 = (Individuo<GenotipoBinario, Fenotipo, Fitness>) p
+						Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
 								.get(i + 1);
 						GenotipoBinario genotipo_aux1 = (GenotipoBinario) copia1.getGenotipo();
 
@@ -81,7 +82,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 
 
 				} else {
-					Individuo<GenotipoBinario, Fenotipo, Fitness> copia = (Individuo<GenotipoBinario, Fenotipo, Fitness>) p.get(i);
+					Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p.get(i);
 					GenotipoBinario genotipo_aux = (GenotipoBinario) copia.getGenotipo();
 
 					ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
@@ -95,7 +96,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 					Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
 							genotipo_sol, fenotipo_sol, (Fitness) fitness);
 					// ---------
-					Individuo<GenotipoBinario, Fenotipo, Fitness> copia1 = (Individuo<GenotipoBinario, Fenotipo, Fitness>) p
+					Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
 							.get(i + 1);
 					GenotipoBinario genotipo_aux1 = (GenotipoBinario) copia1.getGenotipo();
 

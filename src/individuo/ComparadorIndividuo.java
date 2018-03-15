@@ -2,8 +2,13 @@ package individuo;
 
 import java.util.Comparator;
 
-public class ComparadorIndividuo<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>> implements
-Comparator<Individuo<Genotipo, Fenotipo, Fitness>>{
+import fenotipo.Fenotipo;
+import genotipo.Genotipo;
+
+public class ComparadorIndividuo
+<GenotipoCI extends Genotipo, FenotipoCI extends Fenotipo, Fitness extends Comparable<Fitness>>
+implements
+Comparator<Individuo<GenotipoCI, FenotipoCI, Fitness>>{
 
 	private boolean maximizar;
 	
@@ -13,7 +18,7 @@ Comparator<Individuo<Genotipo, Fenotipo, Fitness>>{
 	}
 	
 	@Override
-	public int compare(Individuo<Genotipo, Fenotipo, Fitness> individuo1, Individuo<Genotipo, Fenotipo, Fitness> individuo2)
+	public int compare(Individuo<GenotipoCI, FenotipoCI, Fitness> individuo1, Individuo<GenotipoCI, FenotipoCI, Fitness> individuo2)
 	{
 		return -individuo1.compara(individuo2);
 	}

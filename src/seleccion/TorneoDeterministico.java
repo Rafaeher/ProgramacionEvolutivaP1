@@ -3,33 +3,35 @@ package seleccion;
 import java.util.ArrayList;
 import java.util.Random;
 import configuracion.Configuracion;
+import fenotipo.Fenotipo;
+import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class TorneoDeterministico<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
-		implements Seleccion<Genotipo, Fenotipo, Fitness>
+public class TorneoDeterministico<GenotipoTD extends Genotipo, FenotipoTD extends Fenotipo, Fitness extends Comparable<Fitness>>
+		implements Seleccion<GenotipoTD, FenotipoTD, Fitness>
 {
 	
 	@Override
-	public ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>
-	Selecciona(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion,
+	public ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>>
+	Selecciona(ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> poblacion,
 			Configuracion c, boolean maximizar)
 	{
-		ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacionfinal = new ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>();
+		ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> poblacionfinal = new ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>>();
 		Random r = new Random();
-		Individuo<Genotipo, Fenotipo, Fitness> copia = null;
+		Individuo<GenotipoTD, FenotipoTD, Fitness> copia = null;
 		while (poblacionfinal.size() < poblacion.size()) {
 			int aux = r.nextInt(c.getTamano_poblacion());
 			
 			copia = poblacion.get(aux);
-			Individuo<Genotipo, Fenotipo, Fitness> individuo1 = 
-					new Individuo<Genotipo, Fenotipo, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo1 = 
+					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
 			copia = poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<Genotipo, Fenotipo, Fitness> individuo2 = 
-					new Individuo<Genotipo, Fenotipo, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo2 = 
+					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
 			copia = poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<Genotipo, Fenotipo, Fitness> individuo3 = 
-					new Individuo<Genotipo, Fenotipo, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
-			ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> individuosEnElTorneo = new ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>();
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo3 = 
+					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
+			ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>>();
 			individuosEnElTorneo.add(individuo1);
 			individuosEnElTorneo.add(individuo2);
 			individuosEnElTorneo.add(individuo3);
@@ -41,8 +43,8 @@ public class TorneoDeterministico<Genotipo, Fenotipo, Fitness extends Comparable
 		return poblacionfinal;
 	}
 	
-	private Individuo<Genotipo, Fenotipo, Fitness> algMaximizar(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> torneo){
-		Individuo<Genotipo, Fenotipo, Fitness> individuoMejor = torneo.get(0);
+	private Individuo<GenotipoTD, FenotipoTD, Fitness> algMaximizar(ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> torneo){
+		Individuo<GenotipoTD, FenotipoTD, Fitness> individuoMejor = torneo.get(0);
 		for(int i = 0; i < torneo.size(); i++){
 			if((Double)torneo.get(i).getFitness() > (Double)individuoMejor.getFitness()){
 				individuoMejor = torneo.get(i);
@@ -50,8 +52,8 @@ public class TorneoDeterministico<Genotipo, Fenotipo, Fitness extends Comparable
 		}
 		return individuoMejor;
 	}
-	private Individuo<Genotipo, Fenotipo, Fitness> algMinimizar(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> torneo){
-		Individuo<Genotipo, Fenotipo, Fitness> individuoMejor = torneo.get(0);
+	private Individuo<GenotipoTD, FenotipoTD, Fitness> algMinimizar(ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> torneo){
+		Individuo<GenotipoTD, FenotipoTD, Fitness> individuoMejor = torneo.get(0);
 		for(int i = 0; i < torneo.size(); i++){
 			if((Double)torneo.get(i).getFitness() < (Double)individuoMejor.getFitness()){
 				individuoMejor = torneo.get(i);

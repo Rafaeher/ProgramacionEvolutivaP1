@@ -3,6 +3,7 @@ package funcion;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
+import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import funcion.F1;
 import funcion.F2;
@@ -10,12 +11,13 @@ import funcion.F3;
 import funcion.F4;
 import funcion.F5;
 import funcion.Funcion;
+import genotipo.Genotipo;
 import genotipo.GenotipoBinario;
 import individuo.Individuo;
 
-public class FactoriaFunciones <Genotipo, Fenotipo, Fitness extends Comparable<Fitness>> {
+public class FactoriaFunciones <GenotipoFF extends Genotipo, FenotipoFF extends Fenotipo, Fitness extends Comparable<Fitness>> {
 
-	public Funcion<Genotipo,Fenotipo,Fitness> getSeleccion(int f,
+	public Funcion<GenotipoFF,FenotipoFF,Fitness> getSeleccion(int f,
 			ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> poblacion,
 			Configuracion c)
     {

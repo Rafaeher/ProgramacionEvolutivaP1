@@ -3,10 +3,12 @@ package reproduccion;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
+import fenotipo.Fenotipo;
+import genotipo.Genotipo;
 import individuo.Individuo;
 
-public interface Reproduccion<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
+public interface Reproduccion<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitness extends Comparable<Fitness>>
 {
-	ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>
-	reproduce(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, Configuracion c);
+	ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>
+	reproduce(ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> poblacion, Configuracion c);
 }

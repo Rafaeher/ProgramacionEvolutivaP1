@@ -4,19 +4,20 @@ import java.util.ArrayList;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
+import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class F5 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
+public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, FenotipoReal, Double>{
 
 	private boolean maximizar = false;
 	
-	public F5(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
+	public F5(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
 		super(poblacion, configuracion);
 	}
 
 	@Override
-	public void algEvalua(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion) {
-		Individuo<Genotipo, FenotipoReal, Double> individuo_evaluar = null;
+	public void algEvalua(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion) {
+		Individuo<GenotipoF5, FenotipoReal, Double> individuo_evaluar = null;
 		for(int i = 0; i < poblacion.size(); i++)
 		{
 			individuo_evaluar = poblacion.get(i);
@@ -49,8 +50,8 @@ public class F5 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
 	}
 
 	@Override
-	public ArrayList<Individuo<Genotipo, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
-			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
+	public ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion,
+			ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> elite) {
 		// TODO Auto-generated method stub
 		return null;
 	}

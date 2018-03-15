@@ -4,7 +4,7 @@ import genotipo.genes.GenBinario;
 
 import java.util.ArrayList;
 
-public class GenotipoBinario implements Cloneable
+public class GenotipoBinario implements Genotipo
 {
 
     ArrayList<GenBinario> genes;
