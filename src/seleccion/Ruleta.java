@@ -109,8 +109,8 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 				mapa.put(fitness_individuo, array);
 			} else {
 				// Ya había un individuo con ese fitness
-				System.out.println("Ya había un individuo con ese fitness");
-				mapa.get(fitness_individuo).add(poblacion.get(i));
+				//System.out.println("Ya había un individuo con ese fitness");
+				mapa.get(fitness_individuo).add(poblacion.get(i).clone());
 			}
 		}
 		

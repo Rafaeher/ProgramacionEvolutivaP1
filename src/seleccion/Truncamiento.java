@@ -45,7 +45,7 @@ public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo
  		//Si ha quedado algun hueco por error con los decimales,
  		//lo llenamos con el mejor de la poblacion
  		while(sol.size() < poblacion.size()){
- 			sol.add(poblacion.get(0));
+ 			sol.add(poblacion.get(0).clone());
  		}
 		return sol;
 	}

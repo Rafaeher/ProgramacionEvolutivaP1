@@ -31,6 +31,7 @@ public class UniformeBinario<FenotipoUB extends Fenotipo, FitnessUB extends Fitn
 				int Indindividuo2 = r.nextInt(poblacionAux.size()-1);
 				double random = r.nextDouble();
 				if (random <= c.getCruceporcentaje()) {
+					
 					if (p.get(i) != null && p.get(i + 1) != null) {
 						Individuo<GenotipoBinario, FenotipoUB, FitnessUB> individuo1 = poblacionAux.get(Indindividuo1).clone();
 						Individuo<GenotipoBinario, FenotipoUB, FitnessUB> individuo2 = poblacionAux.get(Indindividuo2).clone();
