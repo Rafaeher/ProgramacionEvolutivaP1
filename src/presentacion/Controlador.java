@@ -18,7 +18,7 @@ import poblacionInicial.FactoriaPrimeraPoblacionBinario;
 public class Controlador {
 	
 	
-	public void execute(Configuracion c, JFrame j)
+	public void execute(Configuracion c)
 	{
 		
 		if(c.getProblema() > 0 && c.getProblema() <= 5)
@@ -30,7 +30,7 @@ public class Controlador {
 			FactoriaFunciones<GenotipoBinario,FenotipoReal,Double> factoriaFunciones = new FactoriaFunciones<GenotipoBinario,FenotipoReal,Double>();
 			Funcion<GenotipoBinario, FenotipoReal, Double> funcion = factoriaFunciones.getSeleccion(c.getProblema(), pob, c);
 			funcion.algoritmoGenetico();
-			Vista.getVista().repintaGrafica(funcion.getGeneraciones(), funcion.getmejoriteracion(), funcion.gety_mejor_total(),funcion.getMedia(),j);
+			Vista.getVista().repintaGrafica(funcion.getGeneraciones(), funcion.getmejoriteracion(), funcion.gety_mejor_total(),funcion.getMedia());
 		
 		}
 		

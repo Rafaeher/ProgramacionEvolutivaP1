@@ -93,23 +93,13 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>> mapa, double random) {
 		boolean encontrado = false;
 		Individuo<GenotipoR, FenotipoR, Fitness> individuoseleccionado = null;
-		int i = 0;
-		
 		Iterator it = mapa.entrySet().iterator();
 		while (it.hasNext() && !encontrado) {
 			Map.Entry e = (Map.Entry) it.next();
 			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoR, FenotipoR, Fitness>)e.getValue();
 			if ((Double) e.getKey() > random) {
 				Individuo<GenotipoR, FenotipoR, Fitness> copia = (Individuo<GenotipoR, FenotipoR, Fitness>) e.getValue();
-				//---
-				GenotipoBinario genotipo_aux = (GenotipoBinario)copia.getGenotipo();
-				ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
-				FenotipoReal fenotipo_aux = (FenotipoReal)copia.getFenotipo();
-				ArrayList<FenotipoGenReal> array_fenotipo = new ArrayList<FenotipoGenReal>(fenotipo_aux.getCaracteristicas());
-				Double fitness = new Double((double) copia.getFitness());
-				//---
-				individuoseleccionado = new Individuo<GenotipoR, FenotipoR, Fitness>(
-						(GenotipoR)genotipo_aux, (FenotipoR)fenotipo_aux, (Fitness)fitness);
+				individuoseleccionado = copia.clone();
 				encontrado = true;
 			}
 		}

@@ -18,19 +18,13 @@ public class TorneoDeterministico<GenotipoTD extends Genotipo, FenotipoTD extend
 	{
 		ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> poblacionfinal = new ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>>();
 		Random r = new Random();
-		Individuo<GenotipoTD, FenotipoTD, Fitness> copia = null;
+		
 		while (poblacionfinal.size() < poblacion.size()) {
-			int aux = r.nextInt(c.getTamano_poblacion());
 			
-			copia = poblacion.get(aux);
-			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo1 = 
-					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
-			copia = poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo2 = 
-					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
-			copia = poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo3 = 
-					new Individuo<GenotipoTD, FenotipoTD, Fitness>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo1 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo2 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTD, FenotipoTD, Fitness> individuo3 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			
 			ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTD, FenotipoTD, Fitness>>();
 			individuosEnElTorneo.add(individuo1);
 			individuosEnElTorneo.add(individuo2);

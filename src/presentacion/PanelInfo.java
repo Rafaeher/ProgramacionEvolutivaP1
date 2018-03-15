@@ -18,15 +18,12 @@ import configuracion.Seleccion_enum;
  */
 public class PanelInfo extends javax.swing.JPanel {
     
-	private JFrame j;
-	
     /**
      * Creates new form NewJPanel
      */
-	 public PanelInfo(JFrame j) {
-	       initComponents();
-	       this.j = j;
-	   }
+    public PanelInfo() {
+        initComponents();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -58,6 +55,7 @@ public class PanelInfo extends javax.swing.JPanel {
         jTextFieldElite = new javax.swing.JTextField();
         jLabelTipo = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox<>();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setBackground(new java.awt.Color(187, 212, 238));
 
@@ -73,7 +71,8 @@ public class PanelInfo extends javax.swing.JPanel {
         jLabelSeleccion.setText("Seleccion");
 
         jComboBoxSeleccion.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        jComboBoxSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruleta", "Estocastica", "Truncamiento" }));
+        jComboBoxSeleccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ruleta", "Estocastica", "Truncamiento",
+        		"Torneo Deterministico", "Torneo Probabilistico" }));
         jComboBoxSeleccion.setToolTipText("Elige un método de seleccion");
         jComboBoxSeleccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,12 +172,30 @@ public class PanelInfo extends javax.swing.JPanel {
 
         jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Binario", "Real" }));
 
+        jCheckBox1.setText("Pop Ups");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabelPoblacion)
+                                    .addComponent(jLabelGeneraciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldGeneraciones)
+                                    .addComponent(jTextFieldPoblacion)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabelSeleccion))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(41, 41, 41)
+                                .addComponent(jCheckBox1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,22 +223,11 @@ public class PanelInfo extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelProblema)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBoxProblemas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabelPoblacion)
-                            .addComponent(jLabelGeneraciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldGeneraciones)
-                            .addComponent(jTextFieldPoblacion)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabelSeleccion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTipo)
-                        .addGap(39, 39, 39)
-                        .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jComboBoxProblemas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelTipo)
+                                .addGap(39, 39, 39)
+                                .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
@@ -271,7 +277,9 @@ public class PanelInfo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTipo)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jCheckBox1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addComponent(jButtonRun)
                 .addContainerGap())
         );
@@ -300,7 +308,7 @@ public class PanelInfo extends javax.swing.JPanel {
     }                                                   
 
     private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {                                           
-    	if(this.jTextFieldPoblacion.getText().isEmpty() || jTextFieldGeneraciones.getText().isEmpty()
+        if(this.jTextFieldPoblacion.getText().isEmpty() || jTextFieldGeneraciones.getText().isEmpty()
   			   || jTextFieldCruceporcentaje.getText().isEmpty() || jTextFieldError.getText().isEmpty()
   			   || this.jTextFieldProbMutacion.getText().isEmpty()) {
   		   JOptionPane.showMessageDialog(null,"Error: Faltan datos", "error", JOptionPane.ERROR_MESSAGE);
@@ -332,7 +340,7 @@ public class PanelInfo extends javax.swing.JPanel {
   	    			   prob_mutacion,r,m,s,g,problema,cruceporcentaje,tamano_poblacion,elite);
   	    	   Controlador controlador= new Controlador();
   	    	   System.out.println("tamaño de la poblacion" + tamano_poblacion);
-  	    	   controlador.execute(c,j);
+  	    	   controlador.execute(c);
   	    	   
   	       }
   	       else {
@@ -351,9 +359,9 @@ public class PanelInfo extends javax.swing.JPanel {
 
     private void jTextFieldProbMutacion1ActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         // TODO add your handling code here:
-    }                                                       
+    }                
 
-    private Seleccion_enum getSeleccion(String s) {
+	private Seleccion_enum getSeleccion(String s) {
   	   if(s.equalsIgnoreCase("Ruleta")) return Seleccion_enum.Ruleta;
   	   else if (s.equalsIgnoreCase("Estocastica")) return Seleccion_enum.Estocastica;
   	   else if (s.equalsIgnoreCase("Truncamiento")) return Seleccion_enum.Truncamiento;
@@ -377,9 +385,15 @@ public class PanelInfo extends javax.swing.JPanel {
     	 if(s.equalsIgnoreCase("Binario")) return Genotipo_enum.Binario;
     	 else if(s.equalsIgnoreCase("Real")) return Genotipo_enum.Real;
     	 else return null;
+     }	
+
+     public boolean isPopUpsSelected(){
+    	 return jCheckBox1.isSelected();
      }
+
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonRun;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBoxCruce;
     private javax.swing.JComboBox<String> jComboBoxProblemas;
     private javax.swing.JComboBox<String> jComboBoxSeleccion;
