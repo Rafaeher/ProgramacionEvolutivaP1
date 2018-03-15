@@ -157,7 +157,7 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 	
 	public ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam)
 	{
-		poblacion.sort(new ComparadorIndividuo<Genotipo, Fenotipo, Fitness>());
+		poblacion.sort(new ComparadorIndividuo<Genotipo, Fenotipo, Fitness>(getMaximizar()));
 		ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> mejores = new ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>();
 		for(int i = 0; i < tam; i++)
 			mejores.add(poblacion.get(i));

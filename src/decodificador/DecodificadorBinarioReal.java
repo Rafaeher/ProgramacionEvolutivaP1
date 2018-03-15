@@ -9,9 +9,8 @@ import java.util.ArrayList;
 public class DecodificadorBinarioReal extends DecodificadorEslabon
 {
     @Override
-    protected Object decodifica(Object genotipoE, Object fenotipoE)
+    protected void decodifica(Object genotipoE, Object fenotipoE)
     {
-    	ArrayList<Double> solucion = new ArrayList<Double>();
         if (genotipoE instanceof GenotipoBinario && fenotipoE instanceof FenotipoReal)
         {
             FenotipoReal fenotipo = (FenotipoReal) fenotipoE;
@@ -25,18 +24,16 @@ public class DecodificadorBinarioReal extends DecodificadorEslabon
                 int numGenes = genotipo.getGen(i).getTamGen();
                
                try{
-            	   solucion.add(fenotipo.getCaracteristicas().get(i).getMin() + genesInt * (fenotipo.getCaracteristicas().get(i).getMax() - fenotipo.getCaracteristicas().get(i).getMin()) / (Math.pow(2, numGenes) - 1));
+            	   fenotipo.setFenotipoDelGen(i, fenotipo.getCaracteristicas().get(i).getMin() + genesInt * (fenotipo.getCaracteristicas().get(i).getMax() - fenotipo.getCaracteristicas().get(i).getMin()) / (Math.pow(2, numGenes) - 1));
                }
                catch(Exception e){
             	   System.out.println(e.getMessage());
                }
                 
             }
-
-            return solucion;
         }
         else
-            return (new DecodificadorFinal()).decodifica(genotipoE, fenotipoE);
+            (new DecodificadorFinal()).decodifica(genotipoE, fenotipoE);
 
     }
 }

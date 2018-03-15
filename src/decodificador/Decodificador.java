@@ -9,8 +9,8 @@ public class Decodificador
      * @param genotipo el genotipo a decodificar
      * @param fenotipo el fenotipo decodificado
      */
-    public static Object decodifica(Object genotipo, Object fenotipo)
+    public static void decodifica(Object genotipo, Object fenotipo)
     {
-        return (new DecodificadorInicial()).decodifica(genotipo, fenotipo);
+        new DecodificadorInicial().decodifica(genotipo, fenotipo);
     }
 }

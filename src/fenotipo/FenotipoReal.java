@@ -2,44 +2,26 @@ package fenotipo;
 
 import java.util.ArrayList;
 
-import fenotipo.caracteristica.FenotipoGen;
+import fenotipo.caracteristica.FenotipoGenReal;
 
 public class FenotipoReal
 {
-    ArrayList<FenotipoGen> caracteristicas; // Las características del fenotipo
-
-
-
-    /**
-     * Constructora
-     *
-     * @param minE: el valor mínimo que puede tomar una característica
-     * @param maxE: el valor máximo que puede tomar una característica
-     * @param precisionE: la precisión que deben tener las características
-     */
+    ArrayList<FenotipoGenReal> caracteristicas; // Las características del fenotipo
 
 
     /**
-     * Constructora a partir del número de características
-     *
-     * @param n: número de características
-     * @param minE: el valor mínimo que puede tomar una característica
-     * @param maxE: el valor máximo que puede tomar una característica
-     * @param precisionE: la precisión que deben tener las características
+     * 
      */
     public FenotipoReal()
     {
-        caracteristicas = new ArrayList<FenotipoGen>();
+        caracteristicas = new ArrayList<FenotipoGenReal>();
         
     }
-
-    /**
-     * Inicializa los min, max y precision
-     *
-     * @param minE: el valor mínimo que puede tomar una característica
-     * @param maxE: el valor máximo que puede tomar una característica
-     * @param precisionE: la precisión que deben tener las características
-     */
+    
+    public FenotipoGenReal get(int indice)
+    {
+    	return (FenotipoGenReal) caracteristicas.get(indice).clone();
+    }
   
 
     /**
@@ -47,7 +29,7 @@ public class FenotipoReal
      *
      * @return caracteristicas: las características del fenotipo
      */
-    public ArrayList<FenotipoGen> getCaracteristicas()
+    public ArrayList<FenotipoGenReal> getCaracteristicas()
     {
         return caracteristicas;
     }
@@ -57,15 +39,20 @@ public class FenotipoReal
      *
      * @param caracteristicasE: las características de entrada
      */
-    public void setCaracteristicas(ArrayList<FenotipoGen> caracteristicasE)
+    public void setCaracteristicas(ArrayList<FenotipoGenReal> caracteristicasE)
     {
         caracteristicas = caracteristicasE;
     }
 
     /**
-     * Obtiene el valor máximo que puede tomar una característica
-     *
-     * @return max: el valor máximo que puede tomar una característica
+     * 
+     * @param indice: el �ndice de la caracter�stica
+     * @param valor: el nuevo valor
      */
+    public void setFenotipoDelGen(int indice, double valor)
+    {
+    	FenotipoGenReal fenotipoGen = caracteristicas.get(indice);
+    	fenotipoGen.setFenotipodelgen(valor);
+    }
 
 }

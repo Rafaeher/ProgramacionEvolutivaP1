@@ -2,7 +2,7 @@ package genotipo.genes;
 
 import java.util.ArrayList;
 
-public class GenBinario
+public class GenBinario //implements Cloneable
 {
     ArrayList<Boolean> codigo; // El código del gen
     private int longitud;
@@ -17,7 +17,7 @@ public class GenBinario
         codigo = new ArrayList<Boolean>(longitud);
         this.longitud = longitud;
     }
-
+    
     /**
      * Inicializa aleatoriamente el gen
      */
@@ -39,7 +39,7 @@ public class GenBinario
      */
     public ArrayList<Boolean> getCodigo()
     {
-        return codigo;
+        return (ArrayList<Boolean>) codigo.clone();
     }
 
     /**
@@ -98,7 +98,7 @@ public class GenBinario
      * @param indiceBit: el índice
      * @return el bit i - ésimo
      */
-    public Boolean getBit(int indiceBit)
+    public boolean getBit(int indiceBit)
     {
     	return codigo.get(indiceBit);
     }
@@ -112,5 +112,14 @@ public class GenBinario
     public void setBit(int indiceBit, boolean valor)
     {
     	codigo.set(indiceBit, valor);
+    }
+    
+    @Override
+    public Object clone()
+    {
+    	GenBinario clon = new GenBinario(longitud);
+    	clon.codigo = (ArrayList<Boolean>) codigo.clone();
+    	
+    	return clon;
     }
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import configuracion.Configuracion;
 import decodificador.Decodificador;
 import fenotipo.FenotipoReal;
-import fenotipo.caracteristica.FenotipoGen;
+import fenotipo.caracteristica.FenotipoGenReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
@@ -34,15 +34,15 @@ public class PoblacionInicialF3Binario implements PoblacionInicial {
 			GenotipoBinario genotipo = new GenotipoBinario(genes);
 			//---
 			FenotipoReal fenotipo = new FenotipoReal();
-			FenotipoGen fenotipoDelGen1 = new FenotipoGen(minimoGen1,maximoGen1,config.getPrecision());
-			FenotipoGen fenotipoDelGen2 = new FenotipoGen(minimoGen2,maximoGen2,config.getPrecision());
-			ArrayList<FenotipoGen> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGen>();
+			FenotipoGenReal fenotipoDelGen1 = new FenotipoGenReal(minimoGen1,maximoGen1,config.getPrecision());
+			FenotipoGenReal fenotipoDelGen2 = new FenotipoGenReal(minimoGen2,maximoGen2,config.getPrecision());
+			ArrayList<FenotipoGenReal> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGenReal>();
 			fenotiposDeTodosLosGenes.add(fenotipoDelGen1);
 			fenotiposDeTodosLosGenes.add(fenotipoDelGen2);
 			fenotipo.setCaracteristicas(fenotiposDeTodosLosGenes);
-			ArrayList<Double> fenotipo_del_individuo_i = (ArrayList<Double>)Decodificador.decodifica(genotipo, fenotipo);
-			fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i.get(0));
-			fenotipo.getCaracteristicas().get(1).setFenotipodelgen(fenotipo_del_individuo_i.get(1));
+			Decodificador.decodifica(genotipo, fenotipo);
+			fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
+			fenotipo.getCaracteristicas().get(1).setFenotipodelgen(fenotipo.get(1).getFenotipodelgen());
 			//---
 			Individuo<GenotipoBinario,FenotipoReal,Double> individuo = new Individuo<GenotipoBinario,FenotipoReal,Double>(genotipo);
 			individuo.setFenotipo(fenotipo);

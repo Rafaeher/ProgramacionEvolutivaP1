@@ -7,14 +7,14 @@ import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
-import fenotipo.caracteristica.FenotipoGen;
+import fenotipo.caracteristica.FenotipoGenReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
 
 public class F1<Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 
-	private boolean maximizar = true;
+	private final static boolean maximizar = true;
 
 	public F1(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, Configuracion configuracion)
 

@@ -10,7 +10,7 @@ import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
-import fenotipo.caracteristica.FenotipoGen;
+import fenotipo.caracteristica.FenotipoGenReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
@@ -103,7 +103,7 @@ public class Ruleta<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
 				GenotipoBinario genotipo_aux = (GenotipoBinario)copia.getGenotipo();
 				ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
 				FenotipoReal fenotipo_aux = (FenotipoReal)copia.getFenotipo();
-				ArrayList<FenotipoGen> array_fenotipo = new ArrayList<FenotipoGen>(fenotipo_aux.getCaracteristicas());
+				ArrayList<FenotipoGenReal> array_fenotipo = new ArrayList<FenotipoGenReal>(fenotipo_aux.getCaracteristicas());
 				Double fitness = new Double((double) copia.getFitness());
 				//---
 				individuoseleccionado = new Individuo<Genotipo, Fenotipo, Fitness>(

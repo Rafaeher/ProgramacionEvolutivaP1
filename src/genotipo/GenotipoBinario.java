@@ -4,7 +4,7 @@ import genotipo.genes.GenBinario;
 
 import java.util.ArrayList;
 
-public class GenotipoBinario
+public class GenotipoBinario implements Cloneable
 {
 
     ArrayList<GenBinario> genes;
@@ -19,7 +19,7 @@ public class GenotipoBinario
     }
 	public ArrayList<GenBinario> getGenes()
 	{
-		return genes;
+		return (ArrayList<GenBinario>) genes.clone();
 	}
 
 	/**
@@ -34,8 +34,9 @@ public class GenotipoBinario
 
 	public GenBinario getGen(int indice)
 	{
-		return genes.get(indice);
+		return (GenBinario) genes.get(indice).clone();
 	}
+	
 	public void setGen(int indice, GenBinario gen){
 		genes.add(indice, gen);
 	}
@@ -68,7 +69,7 @@ public class GenotipoBinario
 	 * @param indiceBit
 	 * @return
 	 */
-	public Boolean getBitDeGen(int indiceGen, int indiceBit)
+	public boolean getBitDeGen(int indiceGen, int indiceBit)
 	{
 		return genes.get(indiceGen).getBit(indiceBit);
 	}
@@ -83,6 +84,12 @@ public class GenotipoBinario
 	public void setBitDeGen(int indiceGen, int indiceBit, boolean valor)
 	{
 		genes.get(indiceGen).setBit(indiceBit, valor);
+	}
+	
+	@Override
+	public GenotipoBinario clone()
+	{
+		return new GenotipoBinario((ArrayList<GenBinario>) genes.clone());
 	}
 
 }

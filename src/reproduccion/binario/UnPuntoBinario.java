@@ -10,7 +10,7 @@ import reproduccion.Reproduccion;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import fenotipo.FenotipoReal;
-import fenotipo.caracteristica.FenotipoGen;
+import fenotipo.caracteristica.FenotipoGenReal;
 
 public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 		implements Reproduccion<GenotipoBinario, FenotipoReal, Fitness> {
@@ -36,7 +36,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 						ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
 						GenotipoBinario genotipo_sol = new GenotipoBinario(array_genes);
 						FenotipoReal fenotipo_aux = (FenotipoReal) copia.getFenotipo();
-						ArrayList<FenotipoGen> array_fenotipo = new ArrayList<FenotipoGen>(
+						ArrayList<FenotipoGenReal> array_fenotipo = new ArrayList<FenotipoGenReal>(
 								fenotipo_aux.getCaracteristicas());
 						FenotipoReal fenotipo_sol = new FenotipoReal();
 						fenotipo_sol.setCaracteristicas(array_fenotipo);
@@ -52,7 +52,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 						ArrayList<GenBinario> array_genes1 = new ArrayList<GenBinario>(genotipo_aux1.getGenes());
 						GenotipoBinario genotipo_sol1 = new GenotipoBinario(array_genes1);
 						FenotipoReal fenotipo_aux1 = (FenotipoReal) copia1.getFenotipo();
-						ArrayList<FenotipoGen> array_fenotipo1 = new ArrayList<FenotipoGen>(
+						ArrayList<FenotipoGenReal> array_fenotipo1 = new ArrayList<FenotipoGenReal>(
 								fenotipo_aux1.getCaracteristicas());
 						FenotipoReal fenotipo_sol1 = new FenotipoReal();
 						fenotipo_sol1.setCaracteristicas(array_fenotipo1);
@@ -87,7 +87,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 					ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
 					GenotipoBinario genotipo_sol = new GenotipoBinario(array_genes);
 					FenotipoReal fenotipo_aux = (FenotipoReal) copia.getFenotipo();
-					ArrayList<FenotipoGen> array_fenotipo = new ArrayList<FenotipoGen>(
+					ArrayList<FenotipoGenReal> array_fenotipo = new ArrayList<FenotipoGenReal>(
 							fenotipo_aux.getCaracteristicas());
 					FenotipoReal fenotipo_sol = new FenotipoReal();
 					fenotipo_sol.setCaracteristicas(array_fenotipo);
@@ -102,7 +102,7 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 					ArrayList<GenBinario> array_genes1 = new ArrayList<GenBinario>(genotipo_aux1.getGenes());
 					GenotipoBinario genotipo_sol1 = new GenotipoBinario(array_genes1);
 					FenotipoReal fenotipo_aux1 = (FenotipoReal) copia1.getFenotipo();
-					ArrayList<FenotipoGen> array_fenotipo1 = new ArrayList<FenotipoGen>(
+					ArrayList<FenotipoGenReal> array_fenotipo1 = new ArrayList<FenotipoGenReal>(
 							fenotipo_aux1.getCaracteristicas());
 					FenotipoReal fenotipo_sol1 = new FenotipoReal();
 					fenotipo_sol1.setCaracteristicas(array_fenotipo1);
@@ -136,34 +136,32 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 
 		}
 		FenotipoReal fenotipo = new FenotipoReal();
-		FenotipoGen fenotipoDelGen = new FenotipoGen(individuo1.getFenotipo().getCaracteristicas().get(0).getMin(),
+		FenotipoGenReal fenotipoDelGen = new FenotipoGenReal(individuo1.getFenotipo().getCaracteristicas().get(0).getMin(),
 				individuo1.getFenotipo().getCaracteristicas().get(0).getMax(),
 				individuo1.getFenotipo().getCaracteristicas().get(0).getPrecision());
-		ArrayList<FenotipoGen> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGen>();
+		ArrayList<FenotipoGenReal> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGenReal>();
 		fenotiposDeTodosLosGenes.add(fenotipoDelGen);
 		fenotipo.setCaracteristicas(fenotiposDeTodosLosGenes);
 
 		// Se obtiene un array con todos los fenotipos de TODOS los genes
-		ArrayList<Double> fenotipo_del_individuo_i = (ArrayList<Double>) Decodificador
-				.decodifica(individuo1.getGenotipo(), fenotipo);
+		 Decodificador.decodifica(individuo1.getGenotipo(), fenotipo);
 
-		fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i.get(0));
+		fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
 		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
 				individuo1.getGenotipo());
 		individuosol1.setFenotipo(fenotipo);
 
 		FenotipoReal fenotipo2 = new FenotipoReal();
-		FenotipoGen fenotipoDelGen2 = new FenotipoGen(individuo2.getFenotipo().getCaracteristicas().get(0).getMin(),
+		FenotipoGenReal fenotipoDelGen2 = new FenotipoGenReal(individuo2.getFenotipo().getCaracteristicas().get(0).getMin(),
 				individuo2.getFenotipo().getCaracteristicas().get(0).getMax(),
 				individuo2.getFenotipo().getCaracteristicas().get(0).getPrecision());
-		ArrayList<FenotipoGen> fenotiposDeTodosLosGenes2 = new ArrayList<FenotipoGen>();
+		ArrayList<FenotipoGenReal> fenotiposDeTodosLosGenes2 = new ArrayList<FenotipoGenReal>();
 		fenotiposDeTodosLosGenes2.add(fenotipoDelGen2);
 		fenotipo2.setCaracteristicas(fenotiposDeTodosLosGenes2);
 
-		ArrayList<Double> fenotipo_del_individuo_i2 = (ArrayList<Double>) Decodificador
-				.decodifica(individuo2.getGenotipo(), fenotipo2);
+		Decodificador.decodifica(individuo2.getGenotipo(), fenotipo2);
 
-		fenotipo2.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i2.get(0));
+		fenotipo2.getCaracteristicas().get(0).setFenotipodelgen(fenotipo2.get(0).getFenotipodelgen());
 		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
 				individuo2.getGenotipo());
 		individuosol2.setFenotipo(fenotipo2);
@@ -201,18 +199,17 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 		individuo2.getGenotipo().setGenes(genesIndividuo2);
 		// ------
 		FenotipoReal fenotipo = new FenotipoReal();
-		ArrayList<FenotipoGen> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGen>();
+		ArrayList<FenotipoGenReal> fenotiposDeTodosLosGenes = new ArrayList<FenotipoGenReal>();
 		for (int i = 0; i < individuo1.getFenotipo().getCaracteristicas().size(); i++) {
-			FenotipoGen fenotipoDelGen = new FenotipoGen(individuo1.getFenotipo().getCaracteristicas().get(i).getMin(),
+			FenotipoGenReal fenotipoDelGen = new FenotipoGenReal(individuo1.getFenotipo().getCaracteristicas().get(i).getMin(),
 					individuo1.getFenotipo().getCaracteristicas().get(i).getMax(),
 					individuo1.getFenotipo().getCaracteristicas().get(i).getPrecision());
 			fenotiposDeTodosLosGenes.add(fenotipoDelGen);
 		}
 		fenotipo.setCaracteristicas(fenotiposDeTodosLosGenes);
-		ArrayList<Double> fenotipo_del_individuo_i = (ArrayList<Double>) Decodificador
-				.decodifica(individuo1.getGenotipo(), fenotipo);
+		Decodificador.decodifica(individuo1.getGenotipo(), fenotipo);
 		for (int i = 0; i < fenotipo.getCaracteristicas().size(); i++) {
-			fenotipo.getCaracteristicas().get(i).setFenotipodelgen(fenotipo_del_individuo_i.get(i));
+			fenotipo.getCaracteristicas().get(i).setFenotipodelgen(fenotipo.get(i).getFenotipodelgen());
 		}
 		// fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i.get(0));
 		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
@@ -220,18 +217,17 @@ public class UnPuntoBinario<Fenotipo, Fitness extends Comparable<Fitness>>
 		individuosol1.setFenotipo(fenotipo);
 		// --------
 		FenotipoReal fenotipo2 = new FenotipoReal();
-		ArrayList<FenotipoGen> fenotiposDeTodosLosGenes2 = new ArrayList<FenotipoGen>();
+		ArrayList<FenotipoGenReal> fenotiposDeTodosLosGenes2 = new ArrayList<FenotipoGenReal>();
 		for (int i = 0; i < individuo2.getFenotipo().getCaracteristicas().size(); i++) {
-			FenotipoGen fenotipoDelGen = new FenotipoGen(individuo2.getFenotipo().getCaracteristicas().get(i).getMin(),
+			FenotipoGenReal fenotipoDelGen = new FenotipoGenReal(individuo2.getFenotipo().getCaracteristicas().get(i).getMin(),
 					individuo2.getFenotipo().getCaracteristicas().get(i).getMax(),
 					individuo2.getFenotipo().getCaracteristicas().get(i).getPrecision());
 			fenotiposDeTodosLosGenes2.add(fenotipoDelGen);
 		}
 		fenotipo2.setCaracteristicas(fenotiposDeTodosLosGenes2);
-		ArrayList<Double> fenotipo_del_individuo_i2 = (ArrayList<Double>) Decodificador
-				.decodifica(individuo2.getGenotipo(), fenotipo2);
+		Decodificador.decodifica(individuo2.getGenotipo(), fenotipo2);
 		for (int i = 0; i < fenotipo2.getCaracteristicas().size(); i++) {
-			fenotipo2.getCaracteristicas().get(i).setFenotipodelgen(fenotipo_del_individuo_i2.get(i));
+			fenotipo2.getCaracteristicas().get(i).setFenotipodelgen(fenotipo2.get(i).getFenotipodelgen());
 		}
 		// fenotipo2.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i2.get(0));
 		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
