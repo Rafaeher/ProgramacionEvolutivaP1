@@ -14,6 +14,8 @@ import individuo.Individuo;
 public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo, FitnessT extends Fitness>
 		implements Seleccion<GenotipoT, FenotipoT, FitnessT>
 {
+	
+	private double TRUNC = 0.5;
 	private boolean maximizar;
 
 
@@ -21,43 +23,15 @@ public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo
 	public ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> Selecciona(
 			ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> poblacion, Configuracion c, boolean maximizar) {
 		this.maximizar = maximizar;
-		return null;
-	}
-
-}
-package seleccion;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
-
-import configuracion.Configuracion;
-import fenotipo.Fenotipo;
-import genotipo.Genotipo;
-import individuo.ComparadorIndividuo;
-import individuo.Individuo;
-
-public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo, Fitness extends Comparable<Fitness>>
-		implements Seleccion<GenotipoT, FenotipoT, Fitness>
-{
-	
-	private double TRUNC = 0.5;
-	private boolean maximizar;
-
-
-	@Override
-	public ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>> Selecciona(
-			ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>> poblacion, Configuracion c, boolean maximizar) {
-		this.maximizar = maximizar;
 		return Alg(poblacion,c);
 	}
-	private ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>> Alg(
-			ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>> poblacion, Configuracion c){
+	private ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> Alg(
+			ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> poblacion, Configuracion c){
 		
-		ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>> sol = new ArrayList<Individuo<GenotipoT, FenotipoT, Fitness>>();
+		ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> sol = new ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>>();
 		int individuosASeleccionar = (int) (TRUNC * poblacion.size());
 		int vecesPorIndividuo = (int) (1/TRUNC);
-		ComparadorIndividuo<GenotipoT, FenotipoT, Fitness> comparator = new ComparadorIndividuo<GenotipoT, FenotipoT, Fitness>(maximizar);
+		ComparadorIndividuo<GenotipoT, FenotipoT, FitnessT> comparator = new ComparadorIndividuo<GenotipoT, FenotipoT, FitnessT>(maximizar);
 		poblacion.sort(comparator);
 		int i = 0;
  		while(i < individuosASeleccionar){

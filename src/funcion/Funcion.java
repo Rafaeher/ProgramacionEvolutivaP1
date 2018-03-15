@@ -112,20 +112,20 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> aux = calculaLosMejoresDeLaPoblacion(poblacion,1);
 		FitnessF mejor_poblacion = aux.get(0).getFitness();
 		try{
-			y_mejor_iteracion[it] = mejor_poblacion;
+			y_mejor_iteracion[it] = mejor_poblacion.getValorReal();
 		}
 		catch(Exception e){
 			System.out.println("la");
 		}
 		
 		if(getMaximizar()){
-			if(mejor_poblacion > mejorAbsoluto) {
-				mejorAbsoluto = mejor_poblacion;
+			if(mejor_poblacion.getValorReal() > mejorAbsoluto) {
+				mejorAbsoluto = mejor_poblacion.getValorReal();
 			}
 		}
 		else{
-			if(mejor_poblacion < mejorAbsoluto) {
-				mejorAbsoluto = mejor_poblacion;
+			if(mejor_poblacion.getValorReal() < mejorAbsoluto) {
+				mejorAbsoluto = mejor_poblacion.getValorReal();
 			}
 		}
 		
@@ -136,7 +136,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	private double calculaMedia(){
 		double total = 0;
 		for(int i = 0; i < poblacion.size(); i++){
-			total = total + (Double)poblacion.get(i).getFitness();
+			total = total + poblacion.get(i).getFitness().getValorReal();
 		}
 		return (total / poblacion.size());
 	}

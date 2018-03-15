@@ -33,4 +33,10 @@ public class FitnessReal implements Fitness
 	{
 		return valor;
 	}
+
+	@Override
+	public double getValorReal()
+	{
+		return valor;
+	}
 }

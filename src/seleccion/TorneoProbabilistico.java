@@ -25,11 +25,11 @@ implements Seleccion<GenotipoTP, FenotipoTP, FitnessTP>{
 		while (poblacionfinal.size() < poblacion.size()) {
 
 			
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo1 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo2 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo3 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo1 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo2 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo3 = poblacion.get(r.nextInt(c.getTamano_poblacion())).clone();
 
-			ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>>();
+			ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>();
 
 			individuosEnElTorneo.add(individuo1);
 			individuosEnElTorneo.add(individuo2);
