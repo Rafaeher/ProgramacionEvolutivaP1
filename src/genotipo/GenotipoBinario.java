@@ -38,7 +38,7 @@ public class GenotipoBinario implements Genotipo
 	}
 	
 	public void setGen(int indice, GenBinario gen){
-		genes.add(indice, gen);
+		genes.set(indice, gen);
 	}
 
 	/**
