@@ -23,9 +23,9 @@ public class GenotipoBinario
 	}
 
 	/**
-	 * Obtiene el nÃºmero de cromosomas que tiene el genotipo
+	 * Obtiene el número de cromosomas que tiene el genotipo
 	 *
-	 * @return el nÃºmero de cromsomas que tiene el genotipo
+	 * @return el número de cromsomas que tiene el genotipo
 	 */
 	public int getNumGenes()
 	{
@@ -48,6 +48,40 @@ public class GenotipoBinario
 	public void setGenes(ArrayList<GenBinario> genesE)
 	{
 		genes = genesE;
+	}
+	
+	/**
+	 * Devuelve el tamaño de los genes
+	 * 
+	 * @return
+	 */
+	public int getTamGen()
+	{
+		return genes.get(0).getTamGen();
+	}
+	
+	/**
+	 * Devuelve el bit i - ésimo del gen j - ésimo
+	 * 
+	 * @param indiceGen
+	 * @param indiceBit
+	 * @return
+	 */
+	public Boolean getBitDeGen(int indiceGen, int indiceBit)
+	{
+		return genes.get(indiceGen).getBit(indiceBit);
+	}
+	
+	/**
+	 * Actualiza el valor del bit i - ésimo del gen j - ésimo
+	 * 
+	 * @param indiceGen
+	 * @param indiceBit
+	 * @param valor
+	 */
+	public void setBitDeGen(int indiceGen, int indiceBit, boolean valor)
+	{
+		genes.get(indiceGen).setBit(indiceBit, valor);
 	}
 
 }

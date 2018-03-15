@@ -17,12 +17,12 @@ public class MutacionEstandarBinario<Genotipo,Fenotipo,Fitness> implements Mutac
 		{	
 
 			int i = Math.abs(r.nextInt()) % genotipo.getNumGenes();
-			int j = Math.abs(r.nextInt()) % genotipo.getGen(i).getGen().size();
+			int j = Math.abs(r.nextInt()) % genotipo.getGen(i).getCodigo().size();
 
-			if(genotipo.getGen(i).getGen().get(j))
-				genotipo.getGen(i).getGen().set(j, false);
+			if(genotipo.getGen(i).getCodigo().get(j))
+				genotipo.getGen(i).getCodigo().set(j, false);
 			else
-				genotipo.getGen(i).getGen().set(j, true);
+				genotipo.getGen(i).getCodigo().set(j, true);
 			
 		}
 		

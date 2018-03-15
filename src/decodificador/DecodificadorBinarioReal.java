@@ -21,7 +21,7 @@ public class DecodificadorBinarioReal extends DecodificadorEslabon
 
             for(int i = 0; i < genotipo.getNumGenes(); i++)
             {
-                int genesInt = GenBinario.genAInt(genotipo.getGen(i).getGen());
+                int genesInt = GenBinario.genAInt(genotipo.getGen(i).getCodigo());
                 int numGenes = genotipo.getGen(i).getTamGen();
                
                try{

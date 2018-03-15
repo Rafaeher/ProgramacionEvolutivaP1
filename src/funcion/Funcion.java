@@ -60,12 +60,11 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 				System.out.println("Iteracio " + it + " elite "+ elite.get(0).getFitness() + " " + elite.get(1).getFitness());
 			}
 			catch(Exception e){
-				System.out.println("ERROR");
+				System.out.println(getClass().getName() + ": error con la élite en el algoritmo genético");
 			}
 			
 			pintar(it);
 			algEvalua(poblacion);
-			//System.out.println(it);
 		}
 		System.out.println(it);
 	}
@@ -86,7 +85,7 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 		//Obtenemos el mecanismo de reproduccion
 		Reproduccion<Genotipo, Fenotipo, Fitness> reproduccion = factoriaReproduccion.getReproduccion(this.configuracion.getReproduccion_seleccionada());
 		//Reproducimos los individuos y devolvemos la poblacion con los individuos nuevos en ella
-		this.poblacion = reproduccion.reproduce(seleccionados, configuracion);
+			this.poblacion = reproduccion.reproduce(seleccionados, configuracion);
 	}
 
 	private void algMutacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> reproducidos)
