@@ -25,7 +25,7 @@ public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, Fenoti
 			ArrayList<Double> parametros = new ArrayList<Double>();
 			for(int j = 0; j < individuo_evaluar.getFenotipo().getCaracteristicas().size(); j++) {
 				
-				//parametros.add(individuo_evaluar.getFenotipo().getCaracteristicas().get(j));
+				parametros.add(individuo_evaluar.getFenotipo().getCaracteristicas().get(j).getFenotipodelgen());
 				
 			}
 			individuo_evaluar.setFitness(funcion5(parametros));
@@ -35,10 +35,10 @@ public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, Fenoti
 	}
 
 	private FitnessReal funcion5(ArrayList<Double> parametros) {
-		double sumatorio = 0;
-		for(int i = 1; i <= parametros.size(); ++i) {
+		double sumatorio = 0.0;
+		for(int i = 1; i < parametros.size(); ++i) {
 			double parte1 = Math.sin(parametros.get(i));
-			double parte2 = Math.pow(Math.sin((i + 1) * Math.pow(parametros.get(i), Math.PI)), 20);
+			double parte2 = Math.pow(Math.sin((i + 1.0) * Math.pow(parametros.get(i), Math.PI)), 20.0);
 			sumatorio -= parte1 * parte2;
 		}
 		return new FitnessReal(sumatorio);
