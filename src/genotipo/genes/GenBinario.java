@@ -1,6 +1,7 @@
 package genotipo.genes;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GenBinario implements Cloneable
 {
@@ -23,9 +24,11 @@ public class GenBinario implements Cloneable
      */
     public void inicializacionAleatoria()
     {
+    	Random r = new Random();
+    	
         for(int i = 0; i < longitud; i++)
         {
-            if (Math.random() <= 0.5)
+            if (r.nextBoolean())
                 codigo.add(true);
             else
                 codigo.add(false);
