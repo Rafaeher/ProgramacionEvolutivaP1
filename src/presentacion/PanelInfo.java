@@ -348,7 +348,7 @@ public class PanelInfo extends javax.swing.JPanel {
   	       Reproduccion_enum r = getReproduccion(cruce);
   	       Genotipo_enum g = getGenotipo(genotipo);
   	       Mutacion_enum m = getMutacion("");
-  	       int parametrosf5 = this.jComboBoxProblemas1.getSelectedIndex();
+  	       int parametrosf5 = this.jComboBoxProblemas1.getSelectedIndex() + 1;
   	      
   	       
   	       if(true) {
