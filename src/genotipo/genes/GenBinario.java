@@ -4,51 +4,51 @@ import java.util.ArrayList;
 
 public class GenBinario
 {
-    ArrayList<Boolean> gen; // Los genes del cromosoma
+    ArrayList<Boolean> codigo; // El código del gen
     private int longitud;
 
     /**
      * Constructora a partir de la longitud
      *
-     * @param longitud: nÃºmero de genes que debe tener el cromosoma
+     * @param longitud: numero de bits que debe tener el gen
      */
     public GenBinario(int longitud)
     {
-        gen = new ArrayList<Boolean>(longitud);
+        codigo = new ArrayList<Boolean>(longitud);
         this.longitud = longitud;
     }
 
     /**
-     * Inicializa aleatoriamente el cromosoma
+     * Inicializa aleatoriamente el gen
      */
     public void inicializacionAleatoria()
     {
         for(int i = 0; i < longitud; i++)
         {
             if (Math.random() <= 0.5)
-                gen.add(true);
+                codigo.add(true);
             else
-                gen.add(false);
+                codigo.add(false);
         }
     }
 
     /**
-     * Obtiene los genes del cromosoma
+     * Obtiene el código del gen
      *
-     * @return genes: los genes del cromosoma
+     * @return codigo: el código del gen
      */
-    public ArrayList<Boolean> getGen()
+    public ArrayList<Boolean> getCodigo()
     {
-        return gen;
+        return codigo;
     }
 
     /**
-     * Calcula la longitud que debe tener el cromosoma para poder almacenar un real
+     * Calcula la longitud que debe tener el código del gen para poder almacenar un real
      *
-     * @param min valor mÃ­nimo que puede tomar el real
-     * @param max valor mÃ¡ximo que puede tomar el real
-     * @param precision precisiÃ³n que debe tener el real
-     * @return longitud que debe tener el cromosoma para poder almacenar el real
+     * @param min valor mínimo que puede tomar el real
+     * @param max valor máximo que puede tomar el real
+     * @param precision precisión que debe tener el real
+     * @return longitud que debe tener el código del gen para poder almacenar el real
      */
     public static int calculaLongitud(final Double min, final Double max, final Double precision)
     {
@@ -56,32 +56,61 @@ public class GenBinario
     }
 
     /**
-     * Convierte genes a un int
+     * Convierte un código binario a int
      *
-     * @param genes: los genes
+     * @param codigo: el código binario
      * @return resultado: el int equivalente
      */
-    public static int genAInt(ArrayList<Boolean> gen)
+    public static int genAInt(ArrayList<Boolean> codigo)
     {
         int resultado = 0;
 
-        for(int i = 0; i < gen.size(); i++)
-            if(gen.get(gen.size() - i - 1))
+        for(int i = 0; i < codigo.size(); i++)
+            if(codigo.get(codigo.size() - i - 1))
                 resultado += Math.ceil(Math.pow(2, i));
 
         return resultado;
     }
 
     /**
-     * Obtiene el nÃºmero de genes
+     * Obtiene el tamaño del código
      *
-     * @return nÃºmero d egenes
+     * @return tamaño del código
      */
     public int getTamGen()
     {
-        return gen.size();
+        return codigo.size();
     }
-    public void setGen(ArrayList<Boolean> gen) {
-    	this.gen = gen;
+    
+    /**
+     * Actualiza el valor del código del gen
+     * 
+     * @param codigo: el código del gen
+     */
+    public void setCodigo(ArrayList<Boolean> codigo)
+    {
+    	this.codigo = codigo;
+    }
+    
+    /**
+     * Obtiene el bit i - ésimo
+     * 
+     * @param indiceBit: el índice
+     * @return el bit i - ésimo
+     */
+    public Boolean getBit(int indiceBit)
+    {
+    	return codigo.get(indiceBit);
+    }
+    
+    /**
+     * Actualiza el bit i - ésimo
+     * 
+     * @param indiceBit: el índice
+     * @param valor: el valor con el que se quiere actualizar
+     */
+    public void setBit(int indiceBit, boolean valor)
+    {
+    	codigo.set(indiceBit, valor);
     }
 }

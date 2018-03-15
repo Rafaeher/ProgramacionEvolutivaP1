@@ -8,7 +8,7 @@ import genotipo.GenotipoBinario;
 import individuo.Individuo;
 import reproduccion.Reproduccion;
 
-public class VariosPuntosBinario<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>> implements Reproduccion<GenotipoBinario, FenotipoReal, Fitness>
+public class VariosPuntosBinario<Fenotipo, Fitness extends Comparable<Fitness>> implements Reproduccion<GenotipoBinario, FenotipoReal, Fitness>
 {
 
     @Override
