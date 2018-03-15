@@ -23,7 +23,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	private double[] y_mejor_iteracion;
 	private double[] y_mejor_total;
 	private double[] y_media;
-	private double mejorAbsoluto = 0;
+	private double mejorAbsoluto;
 
 	public Funcion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> poblacion, Configuracion configuracion)
 	{
@@ -33,6 +33,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		this.y_mejor_iteracion = new double[configuracion.getNum_generaciones()];
 		this.y_mejor_total = new double[configuracion.getNum_generaciones()];
 		this.y_media = new double[configuracion.getNum_generaciones()];
+		
 	}
 	
 	public void algoritmoGenetico()

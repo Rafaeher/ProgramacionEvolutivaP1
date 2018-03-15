@@ -42,12 +42,17 @@ public class VistaImp extends Vista {
 	@Override
 	public void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
 			double[] y_mejorAbsoluto,double[] y_media) {
-
+		double aux =y_media[2] ;
+		y_media[0] = aux;
+		y_mejorPoblacion[0] = aux;
+		y_mejorAbsoluto[0] = aux;
 		plot.removeAllPlots();
 		plot.addLegend("SOUTH");
 		plot.addLinePlot("Mejor Absoluto", x_generaciones, y_mejorAbsoluto);
 		plot.addLinePlot("Mejor de la generacion", x_generaciones, y_mejorPoblacion);
 		plot.addLinePlot("Media de la poblacion", x_generaciones, y_media);
+		
+		
 		if(panelInfo.isPopUpsSelected()){
 			 JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
 		}
