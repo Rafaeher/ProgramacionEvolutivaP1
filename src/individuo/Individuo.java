@@ -121,7 +121,7 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 		Individuo<GenotipoI, FenotipoI, FitnessI> clon = new Individuo<GenotipoI, FenotipoI, FitnessI>();
 		clon.genotipo = (GenotipoI) genotipo.clone();
 		clon.fenotipo = (FenotipoI) fenotipo.clone();
-		clon.fitness = fitness;
+		clon.fitness = (FitnessI) fitness.clone();
 		
 		return clon;
 	}

@@ -60,7 +60,7 @@ public class FenotipoReal implements Fenotipo
     {
     	FenotipoReal clon = new FenotipoReal();
     	for(int i = 0; i < caracteristicas.size(); i++)
-    		clon.caracteristicas.set(i, (FenotipoGenReal) caracteristicas.get(i).clone());
+    		clon.caracteristicas.add(i, (FenotipoGenReal) caracteristicas.get(i).clone());
     	
     	return clon;
     }

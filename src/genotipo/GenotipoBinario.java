@@ -9,7 +9,9 @@ public class GenotipoBinario implements Genotipo
 
     ArrayList<GenBinario> genes;
 
-    public GenotipoBinario() {}
+    public GenotipoBinario() {
+    	genes = new  ArrayList<GenBinario>();
+    }
     
 	/**
 	 * Obtiene los cromosomas
