@@ -5,7 +5,6 @@ import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
-import fenotipo.FenotipoReal;
 import individuo.Individuo;
 import reproduccion.Reproduccion;
 import genotipo.GenotipoBinario;

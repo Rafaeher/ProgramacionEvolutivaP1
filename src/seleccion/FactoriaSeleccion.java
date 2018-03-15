@@ -15,6 +15,7 @@ public class FactoriaSeleccion<GenotipoFS extends Genotipo, FenotipoFS extends F
 			case Estocastica: return new Estocastica<GenotipoFS,FenotipoFS,Fitness>(); 
 			case Torneo_Deterministico: return new TorneoDeterministico<GenotipoFS,FenotipoFS,Fitness>(); 
 			case Torneo_Probabilistico: return new TorneoProbabilistico<GenotipoFS,FenotipoFS,Fitness>(); 
+			case Truncamiento: return new Truncamiento<GenotipoFS,FenotipoFS,Fitness>(); 
 			default: return null;
 		}
     }
