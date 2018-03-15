@@ -55,25 +55,20 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 			algMutacion(poblacion);
 			if(configuracion.getElite() > 0){
 				algEvalua(poblacion);
-				this.poblacion = (ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>)colocaLaelite(poblacion,elite);
+				this.poblacion = colocaLaelite(poblacion,elite);
 			}
-			try{
-				if (elite != null)
-				{
-					System.out.println("Iteración " + it);			
-					for(int i = 0; i < elite.size(); i++)
-						System.out.println("Élite " + i + ": " + elite.get(i).getFitness());
-					System.out.println("-------------");
-				}
-			}
-			catch(Exception e){
-				System.out.println(getClass().getName() + ": error con la élite en el algoritmo genético");
+			
+			if (elite != null)
+			{
+				System.out.println("Iteración " + it);			
+				for(int i = 0; i < elite.size(); i++)
+					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness());
+				System.out.println("-------------");
 			}
 			
 			pintar(it);
 			algEvalua(poblacion);
 		}
-		System.out.println(it);
 	}
 
 	private void algSeleccion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> individuos_iniciales)
@@ -156,7 +151,7 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 		return y_media;
 	}
 	public abstract void algEvalua(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion);
-	public abstract Object colocaLaelite(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, 
+	public abstract ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> colocaLaelite(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, 
 			ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> elite);
 	//public abstract Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam);
 	

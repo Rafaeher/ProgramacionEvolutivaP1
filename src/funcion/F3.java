@@ -45,7 +45,7 @@ public class F3 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 	}
 
 	@Override
-	public Object colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
+	public ArrayList<Individuo<Genotipo, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
 			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
 		ArrayList<Individuo<Genotipo, FenotipoReal, Double>> solucion = new ArrayList<Individuo<Genotipo, FenotipoReal, Double>>(
 				poblacion);

@@ -51,13 +51,14 @@ public class GenotipoBinario
 	}
 	
 	/**
-	 * Devuelve el tamaño de los genes
+	 * Devuelve el tamaño del gen i - ésimo
 	 * 
+	 * @indice
 	 * @return
 	 */
-	public int getTamGen()
+	public int getTamGen(int indice)
 	{
-		return genes.get(0).getTamGen();
+		return genes.get(indice).getTamGen();
 	}
 	
 	/**

@@ -32,16 +32,24 @@ public class UniformeBinario<Fenotipo, Fitness extends Comparable<Fitness>> impl
 			
 			int numGenes = genotipo1.getNumGenes();
 						
-			int indGen1 = rand.nextInt(numGenes), indGen2 = rand.nextInt(numGenes);
-			
-			for(int indBit = 0; indBit < genotipo1.getTamGen(); indBit++)
+			int indGen = rand.nextInt(numGenes);
+			int indBit;
+			try
+			{
+
+			for(indBit = 0; indBit < genotipo1.getTamGen(indGen); indBit++)
 			{
 				if (rand.nextDouble() < P_CRUCE_GEN)
 				{
-					Boolean aux = genotipo1.getBitDeGen(indGen1, indBit);
-					genotipo1.setBitDeGen(indGen1, indBit, genotipo2.getBitDeGen(indGen2, indBit));
-					genotipo2.setBitDeGen(indGen2, indBit, aux);
+					Boolean aux = genotipo1.getBitDeGen(indGen, indBit);
+					genotipo1.setBitDeGen(indGen, indBit, genotipo2.getBitDeGen(indGen, indBit));
+					genotipo2.setBitDeGen(indGen, indBit, aux);
 				}
+			}
+			}
+			catch(Exception e)
+			{
+				System.out.println("hi");
 			}
 		}
 		

@@ -49,7 +49,7 @@ public class F5 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
 	}
 
 	@Override
-	public Object colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
+	public ArrayList<Individuo<Genotipo, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
 			ArrayList<Individuo<Genotipo, FenotipoReal, Double>> elite) {
 		// TODO Auto-generated method stub
 		return null;
