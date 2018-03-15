@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import configuracion.Configuracion;
 import individuo.Individuo;
 
-public abstract class PoblacionInicialF2 implements PoblacionInicial {
+public abstract class PoblacionInicialF4 implements PoblacionInicial {
 
 	@Override
 	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config)
