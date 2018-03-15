@@ -46,7 +46,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			if(configuracion.getElite() > 0){
 				System.out.println("Elite: " + configuracion.getElite());
-				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion,configuracion.getElite());
+				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
 			it++;
 			//seleccion
@@ -66,7 +66,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			{
 				System.out.println("Iteración " + it);			
 				for(int i = 0; i < elite.size(); i++)
-					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness());
+					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness().getValorReal());
 				System.out.println("-------------");
 			}
 			
