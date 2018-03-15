@@ -4,7 +4,7 @@ import java.util.Random;
 
 import genotipo.GenotipoBinario;
 
-public class MutacionEstandarBinario<Genotipo,Fenotipo,Fitness> implements Mutacion<GenotipoBinario,Fenotipo,Fitness>
+public class MutacionEstandarBinario<Fenotipo,Fitness> implements Mutacion<GenotipoBinario,Fenotipo,Fitness>
 {
 	
 	@Override

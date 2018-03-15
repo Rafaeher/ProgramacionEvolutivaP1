@@ -35,14 +35,14 @@ public class Individuo<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
 		fitness = fit;
 	}
 	/**
-	 * Indica si el individuo actual es peor que el otro
+	 * Indica si el individuo actual es peor, igual o mejor que el otro
 	 * 
 	 * @param otro: un individuo
-	 * @return true si el individuo actual es peor que el otro, false en otro caso
+	 * @return 
 	 */
-	public boolean peor(Individuo<Genotipo, Fenotipo, Fitness> otro)
+	public int compara(Individuo<Genotipo, Fenotipo, Fitness> otro)
 	{
-		return fitness.compareTo(otro.fitness) < 0;
+		return fitness.compareTo(otro.fitness);
 	}
 	
 	/**

@@ -3,6 +3,7 @@ package funcion;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
+import individuo.ComparadorIndividuo;
 import individuo.Individuo;
 import reproduccion.FactoriaReproduccion;
 import reproduccion.Reproduccion;
@@ -57,7 +58,13 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 				this.poblacion = (ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>)colocaLaelite(poblacion,elite);
 			}
 			try{
-				System.out.println("Iteracio " + it + " elite "+ elite.get(0).getFitness() + " " + elite.get(1).getFitness());
+				if (elite != null)
+				{
+					System.out.println("Iteración " + it);			
+					for(int i = 0; i < elite.size(); i++)
+						System.out.println("Élite " + i + ": " + elite.get(i).getFitness());
+					System.out.println("-------------");
+				}
 			}
 			catch(Exception e){
 				System.out.println(getClass().getName() + ": error con la élite en el algoritmo genético");
@@ -104,7 +111,7 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 		algEvalua(poblacion);
 		//Para pintar
 		x_generaciones[it] = it;
-		ArrayList<Individuo> aux = (ArrayList<Individuo>)calculaLosMejoresDeLaPoblacion(poblacion,1);
+		ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> aux = calculaLosMejoresDeLaPoblacion(poblacion,1);
 		Double mejor_poblacion = (Double)aux.get(0).getFitness();
 		try{
 			y_mejor_iteracion[it] = mejor_poblacion;
@@ -151,6 +158,18 @@ public abstract class Funcion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
 	public abstract void algEvalua(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion);
 	public abstract Object colocaLaelite(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, 
 			ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> elite);
-	public abstract Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam);
+	//public abstract Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam);
+	
+	public ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> poblacion, int tam)
+	{
+		poblacion.sort(new ComparadorIndividuo<Genotipo, Fenotipo, Fitness>());
+		ArrayList<Individuo<Genotipo, Fenotipo, Fitness>> mejores = new ArrayList<Individuo<Genotipo, Fenotipo, Fitness>>();
+		for(int i = 0; i < tam; i++)
+			mejores.add(poblacion.get(i));
+		
+		return mejores;
+		
+	}
+	
 	public abstract boolean getMaximizar();
 }

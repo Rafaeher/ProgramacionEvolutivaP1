@@ -8,7 +8,7 @@ public class FactoriaMutacion<Genotipo, Fenotipo, Fitness extends Comparable<Fit
     {
         switch(tipo)
         {
-            case Normal: return (Mutacion<Genotipo, Fenotipo, Fitness>) new MutacionEstandarBinario<Genotipo,Fenotipo,Fitness>();
+            case Normal: return (Mutacion<Genotipo, Fenotipo, Fitness>) new MutacionEstandarBinario<Fenotipo,Fitness>();
             default: return null;
         }
     }

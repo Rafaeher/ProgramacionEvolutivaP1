@@ -52,37 +52,6 @@ public class F1<Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 	}
 
 	@Override
-	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion,
-			int tam) {
-
-		TreeMap<Double, Individuo> treeParaOrdenar = new TreeMap<Double, Individuo>(
-				java.util.Collections.reverseOrder());
-		for (int i = 0; i < poblacion.size(); i++) {
-			treeParaOrdenar.put(poblacion.get(i).getFitness(), poblacion.get(i));
-		}
-		ArrayList<Individuo> solucion = new ArrayList<Individuo>();
-
-		int i = 0;
-		Iterator it = treeParaOrdenar.entrySet().iterator();
-		while (it.hasNext() && i < tam) {
-			Map.Entry e = (Map.Entry) it.next();
-			Individuo<Genotipo, FenotipoReal, Double> copia = (Individuo<Genotipo, FenotipoReal, Double>) e.getValue();
-			//---
-			GenotipoBinario genotipo_aux = (GenotipoBinario)copia.getGenotipo();
-			ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
-			FenotipoReal fenotipo_aux = (FenotipoReal)copia.getFenotipo();
-			ArrayList<FenotipoGen> array_fenotipo = new ArrayList<FenotipoGen>(fenotipo_aux.getCaracteristicas());
-			Double fitness = new Double(copia.getFitness());
-			//---
-			Individuo<GenotipoBinario, FenotipoReal, Double> individuoseleccionado = new Individuo<GenotipoBinario, FenotipoReal, Double>(
-					genotipo_aux, fenotipo_aux, fitness);
-			solucion.add(individuoseleccionado);
-			i = i + 1;
-		}
-		return solucion;
-	}
-
-	@Override
 	public boolean getMaximizar() {
 		return maximizar;
 	}

@@ -39,26 +39,6 @@ public class F3 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 	}
 
 	@Override
-	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, int tam) {
-
-		TreeMap<Double,Individuo> treeParaOrdenar = new TreeMap<Double,Individuo>(java.util.Collections.reverseOrder());
-		for(int i = 0; i < poblacion.size(); i++){
-			treeParaOrdenar.put(poblacion.get(i).getFitness(), poblacion.get(i));
-		}
-		ArrayList<Individuo> solucion = new ArrayList<Individuo>();
-		
-		int i = 0;
-		Iterator it = treeParaOrdenar.entrySet().iterator();
-		while (it.hasNext() && i < tam) {
-			Map.Entry e = (Map.Entry) it.next();
-			Individuo<Genotipo, FenotipoReal, Double> copia = (Individuo<Genotipo, FenotipoReal, Double>) e.getValue();
-			Individuo<Genotipo, FenotipoReal, Double> individuoseleccionado = new Individuo<Genotipo, FenotipoReal, Double>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
-			solucion.add(individuoseleccionado);
-		}
-		return solucion;
-	}
-
-	@Override
 	public boolean getMaximizar()
 	{
 		return maximizar;

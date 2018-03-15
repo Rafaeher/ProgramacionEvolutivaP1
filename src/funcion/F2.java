@@ -28,7 +28,6 @@ public class F2<Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 			double parametro2 = (Double)fenotipo.getCaracteristicas().get(1).getFenotipodelgen();
 			individuo_evaluar.setFitness( funcion2(parametro1, parametro2));
 		}
-		//return individuo_evaluar.getFitness();
 	}
 
 	private Double funcion2(double parametro1, double parametro2) {
@@ -36,26 +35,6 @@ public class F2<Genotipo> extends Funcion<Genotipo, FenotipoReal, Double> {
 		double parte2 = Math.sin(Math.sqrt(Math.abs(parametro2 + (parametro1 / 2) + 47)));
 		double parte3 = Math.sin(Math.sqrt(Math.abs(parametro1 - (parametro2 + 47))));
 		return -parte1 * parte2 - parametro1 * parte3;
-	}
-
-	@Override
-	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, int tam) {
-
-		TreeMap<Double,Individuo> treeParaOrdenar = new TreeMap<Double,Individuo>();
-		for(int i = 0; i < poblacion.size(); i++){
-			treeParaOrdenar.put(poblacion.get(i).getFitness(), poblacion.get(i));
-		}
-		ArrayList<Individuo> solucion = new ArrayList<Individuo>();
-		
-		int i = 0;
-		Iterator it = treeParaOrdenar.entrySet().iterator();
-		while (it.hasNext() && i < tam) {
-			Map.Entry e = (Map.Entry) it.next();
-			Individuo<Genotipo, FenotipoReal, Double> copia = (Individuo<Genotipo, FenotipoReal, Double>) e.getValue();
-			Individuo<Genotipo, FenotipoReal, Double> individuoseleccionado = new Individuo<Genotipo, FenotipoReal, Double>(copia.getGenotipo(),copia.getFenotipo(),copia.getFitness());
-			solucion.add(individuoseleccionado);
-		}
-		return solucion;
 	}
 
 	@Override

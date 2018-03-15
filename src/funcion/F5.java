@@ -43,12 +43,6 @@ public class F5 <Genotipo> extends Funcion<Genotipo, FenotipoReal, Double>{
 	}
 
 	@Override
-	public Object calculaLosMejoresDeLaPoblacion(ArrayList<Individuo<Genotipo, FenotipoReal, Double>> poblacion, int tam) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean getMaximizar() {
 		// TODO Auto-generated method stub
 		return maximizar;
