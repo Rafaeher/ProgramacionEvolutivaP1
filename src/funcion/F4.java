@@ -1,28 +1,26 @@
 package funcion;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
+import fitness.FitnessReal;
 
-public class F4 <GenotipoF4 extends Genotipo> extends Funcion<GenotipoF4, FenotipoReal, Double>
+public class F4 <GenotipoF4 extends Genotipo> extends Funcion<GenotipoF4, FenotipoReal, FitnessReal>
 {
 
 	private boolean maximizar = false;
 	
-	public F4(ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
+	public F4(ArrayList<Individuo<GenotipoF4, FenotipoReal, FitnessReal>> poblacion, Configuracion configuracion) {
 		super(poblacion, configuracion);
 	}
 
 	@Override
-	public void algEvalua(ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> poblacion) {
+	public void algEvalua(ArrayList<Individuo<GenotipoF4, FenotipoReal, FitnessReal>> poblacion) {
 		
-		Individuo<GenotipoF4, FenotipoReal, Double> individuo_evaluar = null;
+		Individuo<GenotipoF4, FenotipoReal, FitnessReal> individuo_evaluar = null;
 		for(int i = 0; i < poblacion.size(); i++)
 		{
 			individuo_evaluar = poblacion.get(i);
@@ -35,8 +33,8 @@ public class F4 <GenotipoF4 extends Genotipo> extends Funcion<GenotipoF4, Fenoti
 		//return individuo_evaluar.getFitness();
 		
 	}
-	private Double funcion4(double parametro1, double parametro2) {
-		return formula(parametro1) * formula(parametro2);
+	private FitnessReal funcion4(double parametro1, double parametro2) {
+		return new FitnessReal(formula(parametro1) * formula(parametro2));
 	}
 	private double formula(double parametro) {
 		double sumador = 0;
@@ -51,37 +49,6 @@ public class F4 <GenotipoF4 extends Genotipo> extends Funcion<GenotipoF4, Fenoti
 	public boolean getMaximizar()
 	{
 		return maximizar;
-	}
-
-	@Override
-	public ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> poblacion,
-			ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> elite)
-	{
-		ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>> solucion = new ArrayList<Individuo<GenotipoF4, FenotipoReal, Double>>(
-				poblacion);
-		/*
-		 * Double guarda el fitness integer guarda la posicion en el array El
-		 * mapa guarda la poblacion, el 0 es el peor de la poblacion para
-		 * sustituirlo por la elite
-		 */
-
-		TreeMap<Double, Integer> treeParaOrdenar = new TreeMap<Double, Integer>(java.util.Collections.reverseOrder());
-		for (int i = 0; i < poblacion.size(); i++) {
-			treeParaOrdenar.put(poblacion.get(i).getFitness(), i);
-		}
-
-		int i = 0;
-		Iterator it = treeParaOrdenar.entrySet().iterator();
-		while (it.hasNext() && i < elite.size()) {
-			Map.Entry e = (Map.Entry) it.next();
-			Individuo<GenotipoF4, FenotipoReal, Double> copia = elite.get(i);
-			Individuo<GenotipoF4, FenotipoReal, Double> individuoseleccionado = new Individuo<GenotipoF4, FenotipoReal, Double>(
-					copia.getGenotipo(), copia.getFenotipo(), copia.getFitness());
-			solucion.set((int) e.getValue(), individuoseleccionado);
-
-			i = i + 1;
-		}
-		return solucion;
 	}
 
 }

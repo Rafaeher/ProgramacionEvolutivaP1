@@ -9,6 +9,8 @@ public class GenotipoBinario implements Genotipo
 
     ArrayList<GenBinario> genes;
 
+    public GenotipoBinario() {}
+    
 	/**
 	 * Obtiene los cromosomas
 	 *
@@ -89,7 +91,13 @@ public class GenotipoBinario implements Genotipo
 	@Override
 	public GenotipoBinario clone()
 	{
-		return new GenotipoBinario((ArrayList<GenBinario>) genes.clone());
+		GenotipoBinario clon = new GenotipoBinario();
+		for(int i = 0; i < genes.size(); i++)
+		{
+			clon.genes.add(i, (GenBinario) genes.get(i).clone());
+		}
+		
+		return clon;
 	}
 
 }

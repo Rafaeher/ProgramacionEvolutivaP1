@@ -3,12 +3,13 @@ package individuo;
 import java.util.Comparator;
 
 import fenotipo.Fenotipo;
+import fitness.Fitness;
 import genotipo.Genotipo;
 
 public class ComparadorIndividuo
-<GenotipoCI extends Genotipo, FenotipoCI extends Fenotipo, Fitness extends Comparable<Fitness>>
+<GenotipoCI extends Genotipo, FenotipoCI extends Fenotipo, FitnessCI extends Fitness>
 implements
-Comparator<Individuo<GenotipoCI, FenotipoCI, Fitness>>{
+Comparator<Individuo<GenotipoCI, FenotipoCI, FitnessCI>>{
 
 	private boolean maximizar;
 	
@@ -18,9 +19,16 @@ Comparator<Individuo<GenotipoCI, FenotipoCI, Fitness>>{
 	}
 	
 	@Override
-	public int compare(Individuo<GenotipoCI, FenotipoCI, Fitness> individuo1, Individuo<GenotipoCI, FenotipoCI, Fitness> individuo2)
+	public int compare(Individuo<GenotipoCI, FenotipoCI, FitnessCI> individuo1, Individuo<GenotipoCI, FenotipoCI, FitnessCI> individuo2)
 	{
-		return -individuo1.compara(individuo2);
+		if (maximizar)
+		{
+			return -individuo1.compara(individuo2);
+		}
+		else
+		{
+			return individuo1.compara(individuo2);
+		}
 	}
 
 }

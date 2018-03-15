@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import configuracion.Configuracion;
 import decodificador.Decodificador;
 import fenotipo.FenotipoReal;
+import fitness.FitnessReal;
 import funcion.F1;
 import funcion.FactoriaFunciones;
 import funcion.Funcion;
@@ -26,9 +27,9 @@ public class Controlador {
 			FactoriaPrimeraPoblacionBinario factoriaPrimeraPoblacion = new FactoriaPrimeraPoblacionBinario();
 			ArrayList<?> poblacion = factoriaPrimeraPoblacion.getPrimeraPoblacion(c);
 			@SuppressWarnings("unchecked")
-			ArrayList<Individuo<GenotipoBinario, FenotipoReal, Double>> pob = (ArrayList<Individuo<GenotipoBinario, FenotipoReal, Double>>) poblacion;
-			FactoriaFunciones<GenotipoBinario,FenotipoReal,Double> factoriaFunciones = new FactoriaFunciones<GenotipoBinario,FenotipoReal,Double>();
-			Funcion<GenotipoBinario, FenotipoReal, Double> funcion = factoriaFunciones.getSeleccion(c.getProblema(), pob, c);
+			ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessReal>> pob = (ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessReal>>) poblacion;
+			FactoriaFunciones<GenotipoBinario,FenotipoReal, FitnessReal> factoriaFunciones = new FactoriaFunciones<GenotipoBinario,FenotipoReal, FitnessReal>();
+			Funcion<GenotipoBinario, FenotipoReal, FitnessReal> funcion = factoriaFunciones.getSeleccion(c.getProblema(), pob, c);
 			funcion.algoritmoGenetico();
 			Vista.getVista().repintaGrafica(funcion.getGeneraciones(), funcion.getmejoriteracion(), funcion.gety_mejor_total(),funcion.getMedia(),j);
 		

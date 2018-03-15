@@ -5,30 +5,31 @@ import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
+import fitness.Fitness;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class TorneoProbabilistico <GenotipoTP extends Genotipo, FenotipoTP extends Fenotipo, Fitness extends Comparable<Fitness>>
-implements Seleccion<GenotipoTP, FenotipoTP, Fitness>{
+public class TorneoProbabilistico <GenotipoTP extends Genotipo, FenotipoTP extends Fenotipo, FitnessTP extends Fitness>
+implements Seleccion<GenotipoTP, FenotipoTP, FitnessTP>{
 
 	private double prob = 0.68;
 
 	@Override
-	public ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>>
-	Selecciona(ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> poblacion,
+	public ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>
+	Selecciona(ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> poblacion,
 			Configuracion c, boolean maximizar)
 	{
-		ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> poblacionfinal = new ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>>();
+		ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> poblacionfinal = new ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>();
 		Random r = new Random();
 
 		while (poblacionfinal.size() < poblacion.size()) {
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo1 = 
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo1 = 
 					poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo2 = 
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo2 = 
 					poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			Individuo<GenotipoTP, FenotipoTP, Fitness> individuo3 = 
+			Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuo3 = 
 					poblacion.get(r.nextInt(c.getTamano_poblacion()));
-			ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>>();
+			ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> individuosEnElTorneo = new ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>();
 			individuosEnElTorneo.add(individuo1);
 			individuosEnElTorneo.add(individuo2);
 			individuosEnElTorneo.add(individuo3);
@@ -40,14 +41,16 @@ implements Seleccion<GenotipoTP, FenotipoTP, Fitness>{
 		return poblacionfinal;
 	}
 	
-	private Individuo<GenotipoTP, FenotipoTP, Fitness> algMaximizar(ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> torneo){
-		Individuo<GenotipoTP, FenotipoTP, Fitness> individuoMejor = torneo.get(0);
-		Individuo<GenotipoTP, FenotipoTP, Fitness> individuoPeor = torneo.get(0);
+	private Individuo<GenotipoTP, FenotipoTP, FitnessTP> algMaximizar(ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> torneo){
+		Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuoMejor = torneo.get(0);
+		Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuoPeor = torneo.get(0);
 		for(int i = 0; i < torneo.size(); i++){
-			if((Double)torneo.get(i).getFitness() > (Double)individuoMejor.getFitness()){
+			if(torneo.get(i).compara(individuoMejor) > 0) // Si es mejor
+			{
 				individuoMejor = torneo.get(i);
 			}
-			if((Double)torneo.get(i).getFitness() < (Double)individuoPeor.getFitness()){
+			if(torneo.get(i).compara(individuoPeor) < 0) // Si es peor
+			{
 				individuoPeor = torneo.get(i);
 			}
 		}
@@ -57,14 +60,16 @@ implements Seleccion<GenotipoTP, FenotipoTP, Fitness>{
 		}
 		else return individuoPeor;
 	}
-	private Individuo<GenotipoTP, FenotipoTP, Fitness> algMinimizar(ArrayList<Individuo<GenotipoTP, FenotipoTP, Fitness>> torneo){
-		Individuo<GenotipoTP, FenotipoTP, Fitness> individuoMejor = torneo.get(0);
-		Individuo<GenotipoTP, FenotipoTP, Fitness> individuoPeor = torneo.get(0);
+	private Individuo<GenotipoTP, FenotipoTP, FitnessTP> algMinimizar(ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> torneo){
+		Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuoMejor = torneo.get(0);
+		Individuo<GenotipoTP, FenotipoTP, FitnessTP> individuoPeor = torneo.get(0);
 		for(int i = 0; i < torneo.size(); i++){
-			if((Double)torneo.get(i).getFitness() < (Double)individuoMejor.getFitness()){
+			if(torneo.get(i).compara(individuoMejor) < 0) // Si es peor
+			{
 				individuoMejor = torneo.get(i);
 			}
-			if((Double)torneo.get(i).getFitness() > (Double)individuoPeor.getFitness()){
+			if(torneo.get(i).compara(individuoPeor) > 0) // Si es mejor
+			{
 				individuoPeor = torneo.get(i);
 			}
 		}

@@ -5,19 +5,20 @@ import java.util.Random;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
+import fitness.Fitness;
 import individuo.Individuo;
 import reproduccion.Reproduccion;
 import genotipo.GenotipoBinario;
 
-public class UniformeBinario<FenotipoUB extends Fenotipo, Fitness extends Comparable<Fitness>> implements Reproduccion<GenotipoBinario, FenotipoUB, Fitness>
+public class UniformeBinario<FenotipoUB extends Fenotipo, FitnessUB extends Fitness> implements Reproduccion<GenotipoBinario, FenotipoUB, FitnessUB>
 {
 
 	private static double P_CRUCE_GEN = 0.5; 
 	
 	@Override
-	public ArrayList<Individuo<GenotipoBinario, FenotipoUB, Fitness>>
+	public ArrayList<Individuo<GenotipoBinario, FenotipoUB, FitnessUB>>
 	reproduce(
-			ArrayList<Individuo<GenotipoBinario, FenotipoUB, Fitness>> poblacion,
+			ArrayList<Individuo<GenotipoBinario, FenotipoUB, FitnessUB>> poblacion,
 			Configuracion config)
 	{
 		

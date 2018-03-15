@@ -2,7 +2,7 @@ package genotipo.genes;
 
 import java.util.ArrayList;
 
-public class GenBinario //implements Cloneable
+public class GenBinario implements Cloneable
 {
     ArrayList<Boolean> codigo; // El código del gen
     private int longitud;

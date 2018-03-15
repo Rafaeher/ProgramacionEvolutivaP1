@@ -6,6 +6,7 @@ import configuracion.Configuracion;
 import decodificador.Decodificador;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
+import fitness.FitnessReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
@@ -16,7 +17,7 @@ public class PoblacionInicialF1Binario extends PoblacionInicialF1 {
 	@Override
 	protected ArrayList<Individuo<?, ?, ?>> getPoblacion(Configuracion config)
 	{
-		ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> poblacion = new ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>>();
+		ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> poblacion = new ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>>();
 		
 		//int num_genes_por_cromosoma = 1;
 		double minimo = 0;
@@ -37,7 +38,7 @@ public class PoblacionInicialF1Binario extends PoblacionInicialF1 {
 			Decodificador.decodifica(genotipo, fenotipo);
 
 			fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
-			Individuo<GenotipoBinario,FenotipoReal,Double> individuo = new Individuo<GenotipoBinario,FenotipoReal,Double>(genotipo);
+			Individuo<GenotipoBinario,FenotipoReal, FitnessReal> individuo = new Individuo<GenotipoBinario,FenotipoReal, FitnessReal>(genotipo);
 			individuo.setFenotipo(fenotipo);
 			poblacion.add(individuo);
 		}

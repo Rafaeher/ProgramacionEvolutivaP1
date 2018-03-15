@@ -12,29 +12,30 @@ import configuracion.Configuracion;
 import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
+import fitness.Fitness;
 import genotipo.Genotipo;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
 
-public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitness extends Comparable<Fitness>>
-		implements Seleccion<GenotipoR, FenotipoR, Fitness> {
+public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, FitnessS extends Fitness>
+		implements Seleccion<GenotipoR, FenotipoR, FitnessS> {
 
 	private boolean maximizar;
 	
 	@Override
-	public ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>
+	public ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>
 	Selecciona
-	(ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> poblacion,
+	(ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>> poblacion,
 			Configuracion c, boolean maximizar)
 	{
 		this.maximizar = maximizar;
-		ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> poblacionfinal = new ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>();
-		TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>> mapaProbabilidadesAcumuladas = calculaFitnessAcumulado(poblacion);
+		ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>> poblacionfinal = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>();
+		TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessS>> mapaProbabilidadesAcumuladas = calculaFitnessAcumulado(poblacion);
 		Random r = new Random();
 		while (poblacionfinal.size() < poblacion.size()) {
 			double random = r.nextDouble();
-			Individuo<GenotipoR, FenotipoR, Fitness> nuevo_individuo = seleccion_alg(mapaProbabilidadesAcumuladas, random);
+			Individuo<GenotipoR, FenotipoR, FitnessS> nuevo_individuo = seleccion_alg(mapaProbabilidadesAcumuladas, random);
 			//System.out.println("nuevo individuo: " + nuevo_individuo + " tamano de poblacion " + poblacion.size());
 			poblacionfinal.add(nuevo_individuo);
 		}
@@ -42,21 +43,21 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 		return poblacionfinal;
 	}
 
-	private TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>> calculaFitnessAcumulado(
-			ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> poblacion) {
+	private TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessS>> calculaFitnessAcumulado(
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>> poblacion) {
 		double fitnessTotal = 0;
 		for (int i = 0; i < poblacion.size(); i++) {
 			fitnessTotal += (Double) poblacion.get(i).getFitness();
 		}
 
-		TreeMap<Double, ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>> mapa = new TreeMap<Double, ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>>(java.util.Collections.reverseOrder());
+		TreeMap<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>> mapa = new TreeMap<Double, ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>>(java.util.Collections.reverseOrder());
 
 		for (int i = 0; i < poblacion.size(); i++) {
 			Double fitness_individuo = (Double) poblacion.get(i).getFitness();
-			Individuo<GenotipoR, FenotipoR, Fitness> individuo = poblacion.get(i);
+			Individuo<GenotipoR, FenotipoR, FitnessS> individuo = poblacion.get(i);
 			if (!mapa.containsKey(fitness_individuo)) {
 				// No habia ningun individuo con ese fitness
-				ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> array = new ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>();
+				ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>> array = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>();
 				array.add(individuo);
 				mapa.put(fitness_individuo, array);
 			} else {
@@ -65,13 +66,13 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			}
 		}
 		
-		TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>> mapaProbabilidadesAcumuladas = new TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>>();
+		TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessS>> mapaProbabilidadesAcumuladas = new TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessS>>();
 		// recorro el mapa
 		Iterator it = mapa.entrySet().iterator();
 		double acumulada = 0;
 		while (it.hasNext()) {
 			Map.Entry e = (Map.Entry) it.next();
-			ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>> arrayaux = (ArrayList<Individuo<GenotipoR, FenotipoR, Fitness>>) e
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>> arrayaux = (ArrayList<Individuo<GenotipoR, FenotipoR, FitnessS>>) e
 					.getValue();
 			for (int i = 0; i < arrayaux.size(); i++) {
 				acumulada = acumulada + ((Double) e.getKey() / fitnessTotal);
@@ -89,18 +90,18 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 	 */
 	// }
 
-	private Individuo<GenotipoR, FenotipoR, Fitness> seleccion_alg(
-			TreeMap<Double, Individuo<GenotipoR, FenotipoR, Fitness>> mapa, double random) {
+	private Individuo<GenotipoR, FenotipoR, FitnessS> seleccion_alg(
+			TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessS>> mapa, double random) {
 		boolean encontrado = false;
-		Individuo<GenotipoR, FenotipoR, Fitness> individuoseleccionado = null;
+		Individuo<GenotipoR, FenotipoR, FitnessS> individuoseleccionado = null;
 		int i = 0;
 		
 		Iterator it = mapa.entrySet().iterator();
 		while (it.hasNext() && !encontrado) {
 			Map.Entry e = (Map.Entry) it.next();
-			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoR, FenotipoR, Fitness>)e.getValue();
+			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoR, FenotipoR, FitnessS>)e.getValue();
 			if ((Double) e.getKey() > random) {
-				Individuo<GenotipoR, FenotipoR, Fitness> copia = (Individuo<GenotipoR, FenotipoR, Fitness>) e.getValue();
+				Individuo<GenotipoR, FenotipoR, FitnessS> copia = (Individuo<GenotipoR, FenotipoR, FitnessS>) e.getValue();
 				//---
 				GenotipoBinario genotipo_aux = (GenotipoBinario)copia.getGenotipo();
 				ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
@@ -108,8 +109,8 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 				ArrayList<FenotipoGenReal> array_fenotipo = new ArrayList<FenotipoGenReal>(fenotipo_aux.getCaracteristicas());
 				Double fitness = new Double((double) copia.getFitness());
 				//---
-				individuoseleccionado = new Individuo<GenotipoR, FenotipoR, Fitness>(
-						(GenotipoR)genotipo_aux, (FenotipoR)fenotipo_aux, (Fitness)fitness);
+				individuoseleccionado = new Individuo<GenotipoR, FenotipoR, FitnessS>(
+						(GenotipoR)genotipo_aux, (FenotipoR)fenotipo_aux, (FitnessS)fitness);
 				encontrado = true;
 			}
 		}

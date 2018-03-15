@@ -12,16 +12,18 @@ import genotipo.genes.GenBinario;
 import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
+import fitness.Fitness;
+import fitness.FitnessReal;
 
-public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Comparable<Fitness>>
-		implements Reproduccion<GenotipoBinario, FenotipoReal, Fitness> {
+public class UnPuntoBinario<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitness>
+		implements Reproduccion<GenotipoBinario, FenotipoReal, FitnessUPB> {
 
 
 	@Override
-	public ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> reproduce(
-			ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> p, Configuracion c) {
+	public ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> reproduce(
+			ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> p, Configuracion c) {
 
-		ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> poblacionSolucion = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>>();
+		ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> poblacionSolucion = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>>();
 		Random r = new Random();
 
 			int i = 0;
@@ -30,7 +32,7 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 				if (random <= c.getCruceporcentaje()) {
 					if (p.get(i) != null && p.get(i + 1) != null) {
 						// --------
-						Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
+						Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB> copia = (Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB>) p
 								.get(i);
 						GenotipoBinario genotipo_aux = (GenotipoBinario) copia.getGenotipo();
 
@@ -41,12 +43,12 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 								fenotipo_aux.getCaracteristicas());
 						FenotipoReal fenotipo_sol = new FenotipoReal();
 						fenotipo_sol.setCaracteristicas(array_fenotipo);
-						Double fitness = new Double((double) copia.getFitness());
+						FitnessReal fitness = (FitnessReal) copia.getFitness();
 
-						Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
-								genotipo_sol, fenotipo_sol, (Fitness) fitness);
+						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
+								genotipo_sol, fenotipo_sol, (FitnessUPB) fitness);
 						// ---------
-						Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
+						Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB>) p
 								.get(i + 1);
 						GenotipoBinario genotipo_aux1 = (GenotipoBinario) copia1.getGenotipo();
 
@@ -57,12 +59,12 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 								fenotipo_aux1.getCaracteristicas());
 						FenotipoReal fenotipo_sol1 = new FenotipoReal();
 						fenotipo_sol1.setCaracteristicas(array_fenotipo1);
-						Double fitness1 = new Double((double) copia.getFitness());
+						FitnessReal fitness1 = (FitnessReal) copia.getFitness();
 
-						Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
-								genotipo_sol1, fenotipo_sol1, (Fitness) fitness);
+						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo2 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
+								genotipo_sol1, fenotipo_sol1, (FitnessUPB) fitness);
 						// ---------
-						ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> array_con_2_individuos;
+						ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> array_con_2_individuos;
 						if(p.get(0).getGenotipo().getNumGenes() == 1){
 							array_con_2_individuos = reproduce_un_gen(individuo1, individuo2);
 						}
@@ -72,8 +74,8 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 						
 						// try {
 
-						Individuo<GenotipoBinario, FenotipoReal, Fitness> ind1 = array_con_2_individuos.get(0);
-						Individuo<GenotipoBinario, FenotipoReal, Fitness> ind2 = array_con_2_individuos.get(1);
+						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> ind1 = array_con_2_individuos.get(0);
+						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> ind2 = array_con_2_individuos.get(1);
 						
 						poblacionSolucion.add(ind1);
 						poblacionSolucion.add(ind2);
@@ -82,7 +84,7 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 
 
 				} else {
-					Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p.get(i);
+					Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB> copia = (Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB>) p.get(i);
 					GenotipoBinario genotipo_aux = (GenotipoBinario) copia.getGenotipo();
 
 					ArrayList<GenBinario> array_genes = new ArrayList<GenBinario>(genotipo_aux.getGenes());
@@ -92,11 +94,11 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 							fenotipo_aux.getCaracteristicas());
 					FenotipoReal fenotipo_sol = new FenotipoReal();
 					fenotipo_sol.setCaracteristicas(array_fenotipo);
-					Double fitness = new Double((double) copia.getFitness());
-					Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
-							genotipo_sol, fenotipo_sol, (Fitness) fitness);
+					FitnessReal fitness = (FitnessReal) copia.getFitness();
+					Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo1 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
+							genotipo_sol, fenotipo_sol, (FitnessUPB) fitness);
 					// ---------
-					Individuo<GenotipoBinario, FenotipoUPB, Fitness> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, Fitness>) p
+					Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB> copia1 = (Individuo<GenotipoBinario, FenotipoUPB, FitnessUPB>) p
 							.get(i + 1);
 					GenotipoBinario genotipo_aux1 = (GenotipoBinario) copia1.getGenotipo();
 
@@ -107,9 +109,9 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 							fenotipo_aux1.getCaracteristicas());
 					FenotipoReal fenotipo_sol1 = new FenotipoReal();
 					fenotipo_sol1.setCaracteristicas(array_fenotipo1);
-					Double fitness1 = new Double((double) copia.getFitness());
-					Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
-							genotipo_sol1, fenotipo_sol1, (Fitness) fitness);
+					FitnessReal fitness1 = (FitnessReal) copia.getFitness();
+					Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo2 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
+							genotipo_sol1, fenotipo_sol1, (FitnessUPB) fitness);
 
 					// ----------------------------------------
 					poblacionSolucion.add(individuo1);
@@ -121,9 +123,9 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 		return poblacionSolucion;
 	}
 
-	private ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> reproduce_un_gen(
-			Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1,
-			Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo2) {
+	private ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> reproduce_un_gen(
+			Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo1,
+			Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo2) {
 		Random r = new Random();
 		int tamano_gen = individuo1.getGenotipo().getGenes().get(0).getTamGen();
 		int random = r.nextInt(tamano_gen);
@@ -148,7 +150,7 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 		 Decodificador.decodifica(individuo1.getGenotipo(), fenotipo);
 
 		fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
-		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
+		Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
 				individuo1.getGenotipo());
 		individuosol1.setFenotipo(fenotipo);
 
@@ -163,20 +165,20 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 		Decodificador.decodifica(individuo2.getGenotipo(), fenotipo2);
 
 		fenotipo2.getCaracteristicas().get(0).setFenotipodelgen(fenotipo2.get(0).getFenotipodelgen());
-		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
+		Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
 				individuo2.getGenotipo());
 		individuosol2.setFenotipo(fenotipo2);
 
-		ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> sol = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>>();
+		ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> sol = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>>();
 		sol.add(individuosol1);
 		sol.add(individuosol2);
 
 		return sol;
 	}
 
-	private ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> reproduce_varios_genes(
-			Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo1,
-			Individuo<GenotipoBinario, FenotipoReal, Fitness> individuo2) {
+	private ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> reproduce_varios_genes(
+			Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo1,
+			Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo2) {
 		Random r = new Random();
 
 		int num_genes = individuo1.getGenotipo().getNumGenes();
@@ -213,7 +215,7 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 			fenotipo.getCaracteristicas().get(i).setFenotipodelgen(fenotipo.get(i).getFenotipodelgen());
 		}
 		// fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i.get(0));
-		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
+		Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuosol1 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
 				individuo1.getGenotipo());
 		individuosol1.setFenotipo(fenotipo);
 		// --------
@@ -231,11 +233,11 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, Fitness extends Compar
 			fenotipo2.getCaracteristicas().get(i).setFenotipodelgen(fenotipo2.get(i).getFenotipodelgen());
 		}
 		// fenotipo2.getCaracteristicas().get(0).setFenotipodelgen(fenotipo_del_individuo_i2.get(0));
-		Individuo<GenotipoBinario, FenotipoReal, Fitness> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, Fitness>(
+		Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuosol2 = new Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>(
 				individuo2.getGenotipo());
 		individuosol2.setFenotipo(fenotipo2);
 
-		ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>> sol = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, Fitness>>();
+		ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>> sol = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessUPB>>();
 		sol.add(individuosol1);
 		sol.add(individuosol2);
 

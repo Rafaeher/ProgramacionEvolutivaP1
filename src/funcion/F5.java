@@ -4,20 +4,21 @@ import java.util.ArrayList;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
+import fitness.FitnessReal;
 import genotipo.Genotipo;
 import individuo.Individuo;
 
-public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, FenotipoReal, Double>{
+public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, FenotipoReal, FitnessReal>{
 
 	private boolean maximizar = false;
 	
-	public F5(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion, Configuracion configuracion) {
+	public F5(ArrayList<Individuo<GenotipoF5, FenotipoReal, FitnessReal>> poblacion, Configuracion configuracion) {
 		super(poblacion, configuracion);
 	}
 
 	@Override
-	public void algEvalua(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion) {
-		Individuo<GenotipoF5, FenotipoReal, Double> individuo_evaluar = null;
+	public void algEvalua(ArrayList<Individuo<GenotipoF5, FenotipoReal, FitnessReal>> poblacion) {
+		Individuo<GenotipoF5, FenotipoReal, FitnessReal> individuo_evaluar = null;
 		for(int i = 0; i < poblacion.size(); i++)
 		{
 			individuo_evaluar = poblacion.get(i);
@@ -27,33 +28,26 @@ public class F5 <GenotipoF5 extends Genotipo> extends Funcion<GenotipoF5, Fenoti
 				//parametros.add(individuo_evaluar.getFenotipo().getCaracteristicas().get(j));
 				
 			}
-			individuo_evaluar.setFitness( funcion5(parametros));
+			individuo_evaluar.setFitness(funcion5(parametros));
 		}
 		//return individuo_evaluar.getFitness();
 		
 	}
 
-	private Double funcion5(ArrayList<Double> parametros) {
+	private FitnessReal funcion5(ArrayList<Double> parametros) {
 		double sumatorio = 0;
 		for(int i = 1; i <= parametros.size(); ++i) {
 			double parte1 = Math.sin(parametros.get(i));
 			double parte2 = Math.pow(Math.sin((i + 1) * Math.pow(parametros.get(i), Math.PI)), 20);
 			sumatorio -= parte1 * parte2;
 		}
-		return sumatorio;
+		return new FitnessReal(sumatorio);
 	}
 
 	@Override
-	public boolean getMaximizar() {
-		// TODO Auto-generated method stub
+	public boolean getMaximizar()
+	{
 		return maximizar;
-	}
-
-	@Override
-	public ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> colocaLaelite(ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> poblacion,
-			ArrayList<Individuo<GenotipoF5, FenotipoReal, Double>> elite) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

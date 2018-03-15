@@ -3,15 +3,16 @@ package individuo;
 import configuracion.Mutacion_enum;
 import decodificador.Decodificador;
 import fenotipo.Fenotipo;
+import fitness.Fitness;
 import genotipo.Genotipo;
 import mutacion.FactoriaMutacion;
 import mutacion.Mutacion;
 
-public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, Fitness extends Comparable<Fitness>>
+public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, FitnessI extends Fitness>
 {
 	GenotipoI genotipo;
 	FenotipoI fenotipo;
-	Fitness fitness;
+	FitnessI fitness;
 
 	/**
 	 * Constructora por defecto
@@ -28,18 +29,18 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 		genotipo = genotipoE;
 	}
 
-	public Individuo(GenotipoI g, FenotipoI f, Fitness fit) {
+	public Individuo(GenotipoI g, FenotipoI f, FitnessI fit) {
 		genotipo =g;
 		fenotipo = f;
 		fitness = fit;
 	}
 	/**
-	 * Indica si el individuo actual es peor, igual o mejor que el otro
+	 * Indica si el individuo actual es peor (<0), igual (0) o mejor(>0)  que el otro
 	 * 
 	 * @param otro: un individuo
 	 * @return 
 	 */
-	public int compara(Individuo<GenotipoI, FenotipoI, Fitness> otro)
+	public int compara(Individuo<GenotipoI, FenotipoI, FitnessI> otro)
 	{
 		return fitness.compareTo(otro.fitness);
 	}
@@ -47,11 +48,11 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	/**
 	 * Introduce una mutación en el genotipo del individuo
 	 */
-	public Individuo<GenotipoI,FenotipoI,Fitness> muta(Mutacion_enum tipoMutacion, double prob_mutacion)
+	public Individuo<GenotipoI,FenotipoI,FitnessI> muta(Mutacion_enum tipoMutacion, double prob_mutacion)
 	{
 		
-		FactoriaMutacion<GenotipoI,FenotipoI,Fitness> f = new FactoriaMutacion<GenotipoI,FenotipoI,Fitness>();
-		Mutacion<GenotipoI,FenotipoI,Fitness> mutacion = f.getMutacion(tipoMutacion);
+		FactoriaMutacion<GenotipoI,FenotipoI,FitnessI> f = new FactoriaMutacion<GenotipoI,FenotipoI,FitnessI>();
+		Mutacion<GenotipoI,FenotipoI,FitnessI> mutacion = f.getMutacion(tipoMutacion);
 		mutacion.muta(genotipo,prob_mutacion);
 		return this;
 	}
@@ -93,7 +94,7 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	 *
 	 * @param fitnessE: el valor de entrada para el fitness
 	 */
-	public void setFitness(Fitness fitnessE)
+	public void setFitness(FitnessI fitnessE)
 	{
 		fitness = fitnessE;
 	}
@@ -103,7 +104,7 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	 *
 	 * @return fitness: el fitness del individuo
 	 */
-	public Fitness getFitness()
+	public FitnessI getFitness()
 	{
 		return fitness;
 	}
@@ -115,9 +116,9 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	/**
 	 * Clona un individuo
 	 */
-	public Individuo<GenotipoI, FenotipoI, Fitness> clone()
+	public Individuo<GenotipoI, FenotipoI, FitnessI> clone()
 	{
-		Individuo<GenotipoI, FenotipoI, Fitness> clon = new Individuo<GenotipoI, FenotipoI, Fitness>();
+		Individuo<GenotipoI, FenotipoI, FitnessI> clon = new Individuo<GenotipoI, FenotipoI, FitnessI>();
 		clon.genotipo = (GenotipoI) genotipo.clone();
 		clon.fenotipo = (FenotipoI) fenotipo.clone();
 		clon.fitness = fitness;

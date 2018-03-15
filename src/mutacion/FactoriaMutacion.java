@@ -1,14 +1,15 @@
 package mutacion;
 
 import configuracion.Mutacion_enum;
+import fitness.Fitness;
 
-public class FactoriaMutacion<Genotipo, Fenotipo, Fitness extends Comparable<Fitness>>
+public class FactoriaMutacion<Genotipo, Fenotipo, FitnessFM extends Fitness>
 {
-	public Mutacion<Genotipo, Fenotipo, Fitness> getMutacion(Mutacion_enum tipo)
+	public Mutacion<Genotipo, Fenotipo, FitnessFM> getMutacion(Mutacion_enum tipo)
     {
         switch(tipo)
         {
-            case Normal: return (Mutacion<Genotipo, Fenotipo, Fitness>) new MutacionEstandarBinario<Fenotipo,Fitness>();
+            case Normal: return (Mutacion<Genotipo, Fenotipo, FitnessFM>) new MutacionEstandarBinario<Fenotipo,FitnessFM>();
             default: return null;
         }
     }

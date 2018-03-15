@@ -3,17 +3,15 @@ package poblacionInicial;
 import java.util.ArrayList;
 
 import configuracion.Configuracion;
-import configuracion.Genotipo_enum;
-import configuracion.Reproduccion_enum;
 import decodificador.Decodificador;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
+import fitness.FitnessReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
 import poblacionInicial.PoblacionInicialF1Binario;
 import poblacionInicial.PoblacionInicialF3Binario;
-import reproduccion.Reproduccion;
 
 public class FactoriaPrimeraPoblacionBinario
 {
@@ -33,8 +31,8 @@ public class FactoriaPrimeraPoblacionBinario
 	}
 	
 	
-	private ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> generaPrimeraPoblacionAleatoriaF2 ( Configuracion c) {
-		ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> poblacion= new ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>>();
+	private ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> generaPrimeraPoblacionAleatoriaF2 ( Configuracion c) {
+		ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> poblacion= new ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>>();
 		//int num_genes_por_cromosoma = 1;
 		double minimo = -512;
 		double maximo = 512;
@@ -60,7 +58,7 @@ public class FactoriaPrimeraPoblacionBinario
 			fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
 			fenotipo.getCaracteristicas().get(1).setFenotipodelgen(fenotipo.get(1).getFenotipodelgen());
 			//----
-			Individuo<GenotipoBinario,FenotipoReal,Double> individuo = new Individuo<GenotipoBinario,FenotipoReal,Double>(genotipo);
+			Individuo<GenotipoBinario,FenotipoReal, FitnessReal> individuo = new Individuo<GenotipoBinario,FenotipoReal, FitnessReal>(genotipo);
 			individuo.setFenotipo(fenotipo);
 			poblacion.add(individuo);
 		}
@@ -69,8 +67,8 @@ public class FactoriaPrimeraPoblacionBinario
 	
 	
 	
-	private ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> generaPrimeraPoblacionAleatoriaF4 ( Configuracion c) {
-		ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>> poblacion= new ArrayList<Individuo<GenotipoBinario,FenotipoReal,Double>>();
+	private ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> generaPrimeraPoblacionAleatoriaF4 ( Configuracion c) {
+		ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> poblacion= new ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>>();
 		//int num_genes_por_cromosoma = 1;
 		double minimoGen1 = -10;
 		double maximoGen1 = 10;
@@ -97,7 +95,7 @@ public class FactoriaPrimeraPoblacionBinario
 			fenotipo.getCaracteristicas().get(0).setFenotipodelgen(fenotipo.get(0).getFenotipodelgen());
 			fenotipo.getCaracteristicas().get(1).setFenotipodelgen(fenotipo.get(1).getFenotipodelgen());
 			//---
-			Individuo<GenotipoBinario,FenotipoReal,Double> individuo = new Individuo<GenotipoBinario,FenotipoReal,Double>(genotipo);
+			Individuo<GenotipoBinario,FenotipoReal, FitnessReal> individuo = new Individuo<GenotipoBinario,FenotipoReal, FitnessReal>(genotipo);
 			individuo.setFenotipo(fenotipo);
 			poblacion.add(individuo);
 		}

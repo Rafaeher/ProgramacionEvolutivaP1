@@ -1,6 +1,7 @@
 package fenotipo.caracteristica;
 
-public class FenotipoGenReal {
+public class FenotipoGenReal implements Cloneable
+{
 	 private double min; // El valor mínimo que puede tomar una característica
 	 private double max; // El valor máximo que puede tomar una característica
 	 private double precision; // La precisión que deben tener las características
