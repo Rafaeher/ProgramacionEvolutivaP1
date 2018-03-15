@@ -19,7 +19,7 @@ import poblacionInicial.FactoriaPrimeraPoblacionBinario;
 public class Controlador {
 	
 	
-	public void execute(Configuracion c, JFrame j)
+	public void execute(Configuracion c)
 	{
 		
 		if(c.getProblema() > 0 && c.getProblema() <= 5)

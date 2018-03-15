@@ -3,6 +3,7 @@ package presentacion;
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import org.math.plot.Plot2DPanel;
 
@@ -16,7 +17,7 @@ public class VistaImp extends Vista {
 		frame = new JFrame();
 		frame.setTitle("Programación Evolutiva");
 		frame.setSize(800, 650);
-		panelInfo = new PanelInfo(frame);
+		panelInfo = new PanelInfo();
 		frame.setLayout(new BorderLayout());
 		frame.add(panelInfo, BorderLayout.WEST);
 		grafica();
@@ -40,13 +41,16 @@ public class VistaImp extends Vista {
 	}
 	@Override
 	public void repintaGrafica(double[] x_generaciones, double[] y_mejorPoblacion,
-			double[] y_mejorAbsoluto,double[] y_media, JFrame jf) {
+			double[] y_mejorAbsoluto,double[] y_media) {
 
 		plot.removeAllPlots();
 		plot.addLegend("SOUTH");
 		plot.addLinePlot("Mejor Absoluto", x_generaciones, y_mejorAbsoluto);
 		plot.addLinePlot("Mejor de la generacion", x_generaciones, y_mejorPoblacion);
 		plot.addLinePlot("Media de la poblacion", x_generaciones, y_media);
+		if(panelInfo.isPopUpsSelected()){
+			 JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
+		}
 
 	}
 	

@@ -1,11 +1,14 @@
 package seleccion;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
 import fitness.Fitness;
 import genotipo.Genotipo;
+import individuo.ComparadorIndividuo;
 import individuo.Individuo;
 
 public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo, FitnessT extends Fitness>
