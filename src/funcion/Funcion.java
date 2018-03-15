@@ -45,7 +45,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			
 			if(configuracion.getElite() > 0){
 				System.out.println("Elite: " + configuracion.getElite());
-				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion,configuracion.getElite());
+				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
 			it++;
 			//seleccion
@@ -65,7 +65,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			{
 				System.out.println("Iteración " + it);			
 				for(int i = 0; i < elite.size(); i++)
-					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness());
+					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness().getValorReal());
 				System.out.println("-------------");
 			}
 			
@@ -161,7 +161,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		
 		for(int i = 0; i < elite.size(); i++)
 		{
-			poblacion.add(poblacion.size() - 1 - i, elite.get(i).clone());
+			poblacion.set(poblacion.size() - 1 - i, elite.get(i).clone());
 		}
 		
 	}
@@ -171,7 +171,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		poblacion.sort(new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar()));
 		ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> mejores = new ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>();
 		for(int i = 0; i < tam; i++)
-			mejores.add(poblacion.get(i));
+			mejores.add(poblacion.get(i).clone());
 		
 		return mejores;
 		

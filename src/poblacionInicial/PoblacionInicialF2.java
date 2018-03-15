@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import configuracion.Configuracion;
 import individuo.Individuo;
 
-public class PoblacionF3 implements PoblacionInicial {
+public class PoblacionInicialF2 implements PoblacionInicial {
 
 	@Override
-	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config) {
+	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config)
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}

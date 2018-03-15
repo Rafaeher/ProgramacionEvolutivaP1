@@ -21,9 +21,17 @@ public class GenotipoBinario implements Genotipo
     public GenotipoBinario(ArrayList<GenBinario> genes) {
     	this.genes = genes;
     }
+    
 	public ArrayList<GenBinario> getGenes()
 	{
-		return (ArrayList<GenBinario>) genes.clone();
+		ArrayList<GenBinario> genesCopia = new ArrayList<GenBinario>();
+		
+		for(int i = 0; i < genes.size(); i++)
+		{
+			genesCopia.add((GenBinario) genes.get(i).clone());
+		}
+		
+		return genesCopia;
 	}
 
 	/**
