@@ -54,6 +54,7 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 		FactoriaMutacion<GenotipoI,FenotipoI,FitnessI> f = new FactoriaMutacion<GenotipoI,FenotipoI,FitnessI>();
 		Mutacion<GenotipoI,FenotipoI,FitnessI> mutacion = f.getMutacion(tipoMutacion);
 		mutacion.muta(genotipo,prob_mutacion);
+		getFenotipo();
 		return this;
 	}
 

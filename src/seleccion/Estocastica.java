@@ -89,7 +89,7 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 				mapa.put(fitness_individuo, array);
 			} else {
 				// Ya había un individuo con ese fitness
-				mapa.get(fitness_individuo).add(poblacion.get(i));
+				mapa.get(fitness_individuo).add(poblacion.get(i).clone());
 			}
 		}
 		

@@ -31,6 +31,7 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, FitnessUPB extends Fit
 				int Indindividuo2 = r.nextInt(poblacionAux.size()-1);
 				double random = r.nextDouble();
 				if (random <= c.getCruceporcentaje()) {
+					System.out.println("Porcentaje de cruce " + c.getCruceporcentaje());
 					if (p.get(i) != null && p.get(i + 1) != null) {
 						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo1 = poblacionAux.get(Indindividuo1).clone();
 						Individuo<GenotipoBinario, FenotipoReal, FitnessUPB> individuo2 = poblacionAux.get(Indindividuo2).clone();
