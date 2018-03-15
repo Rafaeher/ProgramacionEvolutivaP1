@@ -26,11 +26,12 @@ public class Configuracion {
 	private Genotipo_enum genotipo_seleccionado;
 	private int problema;
 	private int elite;
+	private int parametrosf5;
 
 	public Configuracion(/*double minimo, double maximo,*/ boolean maximizar,
 			double precision, /*int num_parametros,*/ int num_generaciones, double prob_mutacion,
 			Reproduccion_enum r, Mutacion_enum m, Seleccion_enum s, Genotipo_enum g, int problema, double probcruce,
-			int tamano_poblacion, int e) {
+			int tamano_poblacion, int e, int parametrosf5) {
 		//this.minimo = minimo;
 		//this.maximo = maximo;
 		this.maximizar = maximizar;
@@ -49,6 +50,7 @@ public class Configuracion {
 		//this.setCruceporcentaje(probcruce);
 		this.genotipo_seleccionado = g;
 		this.elite = e;
+		this.parametrosf5 = parametrosf5;
 
 	}
 	
@@ -159,6 +161,14 @@ public class Configuracion {
 	public int getElite()
 	{
 		return elite;
+	}
+
+	public int getParametrosf5() {
+		return parametrosf5;
+	}
+
+	public void setParametrosf5(int parametrosf5) {
+		this.parametrosf5 = parametrosf5;
 	}
 	
 }

@@ -56,6 +56,8 @@ public class PanelInfo extends javax.swing.JPanel {
         jLabelTipo = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jLabelTipo1 = new javax.swing.JLabel();
+        jComboBoxProblemas1 = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(187, 212, 238));
 
@@ -174,6 +176,13 @@ public class PanelInfo extends javax.swing.JPanel {
 
         jCheckBox1.setText("Pop Ups");
 
+        jLabelTipo1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jLabelTipo1.setText("Parametros F5");
+
+        jComboBoxProblemas1.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        jComboBoxProblemas1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7" }));
+        jComboBoxProblemas1.setToolTipText("Selecciona el problema a resolver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,7 +202,10 @@ public class PanelInfo extends javax.swing.JPanel {
                                 .addGap(52, 52, 52)
                                 .addComponent(jLabelSeleccion))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
+                                .addGap(60, 60, 60)
+                                .addComponent(jButtonRun))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(39, 39, 39)
                                 .addComponent(jCheckBox1)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -227,12 +239,12 @@ public class PanelInfo extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelTipo)
                                 .addGap(39, 39, 39)
-                                .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelTipo1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jComboBoxProblemas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jButtonRun)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,9 +289,13 @@ public class PanelInfo extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTipo)
                     .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxProblemas1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButtonRun)
                 .addContainerGap())
         );
@@ -332,12 +348,13 @@ public class PanelInfo extends javax.swing.JPanel {
   	       Reproduccion_enum r = getReproduccion(cruce);
   	       Genotipo_enum g = getGenotipo(genotipo);
   	       Mutacion_enum m = getMutacion("");
-  	       
+  	       int parametrosf5 = this.jComboBoxProblemas.getSelectedIndex();
   	      
   	       
   	       if(true) {
   	    	   Configuracion c = new Configuracion(true,precision,num_generaciones,
-  	    			   prob_mutacion,r,m,s,g,problema,cruceporcentaje,tamano_poblacion,elite);
+  	    			   prob_mutacion,r,m,s,g,problema,cruceporcentaje,tamano_poblacion,elite,
+  	    			   parametrosf5);
   	    	   Controlador controlador= new Controlador();
   	    	   System.out.println("tamaño de la poblacion" + tamano_poblacion);
   	    	   controlador.execute(c);
@@ -359,9 +376,8 @@ public class PanelInfo extends javax.swing.JPanel {
 
     private void jTextFieldProbMutacion1ActionPerformed(java.awt.event.ActionEvent evt) {                                                        
         // TODO add your handling code here:
-    }                
-
-	private Seleccion_enum getSeleccion(String s) {
+    }                    
+private Seleccion_enum getSeleccion(String s) {
   	   if(s.equalsIgnoreCase("Ruleta")) return Seleccion_enum.Ruleta;
   	   else if (s.equalsIgnoreCase("Estocastica")) return Seleccion_enum.Estocastica;
   	   else if (s.equalsIgnoreCase("Truncamiento")) return Seleccion_enum.Truncamiento;
@@ -389,13 +405,15 @@ public class PanelInfo extends javax.swing.JPanel {
 
      public boolean isPopUpsSelected(){
     	 return jCheckBox1.isSelected();
-     }
+     }	
+
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButtonRun;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JComboBox<String> jComboBoxCruce;
     private javax.swing.JComboBox<String> jComboBoxProblemas;
+    private javax.swing.JComboBox<String> jComboBoxProblemas1;
     private javax.swing.JComboBox<String> jComboBoxSeleccion;
     private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JLabel jLabelCruce;
@@ -408,6 +426,7 @@ public class PanelInfo extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelProblema;
     private javax.swing.JLabel jLabelSeleccion;
     private javax.swing.JLabel jLabelTipo;
+    private javax.swing.JLabel jLabelTipo1;
     private javax.swing.JTextField jTextFieldCruceporcentaje;
     private javax.swing.JTextField jTextFieldError;
     private javax.swing.JTextField jTextFieldGeneraciones;

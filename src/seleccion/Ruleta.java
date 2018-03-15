@@ -13,9 +13,11 @@ import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fenotipo.caracteristica.FenotipoGenReal;
 import fitness.Fitness;
+import fitness.FitnessReal;
 import genotipo.Genotipo;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
+import individuo.ComparadorIndividuo;
 import individuo.Individuo;
 
 public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, FitnessR extends Fitness>
@@ -30,17 +32,62 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 			Configuracion c, boolean maximizar)
 	{
 		this.maximizar = maximizar;
-		ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacionfinal = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>();
-		TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessR>> mapaProbabilidadesAcumuladas = calculaFitnessAcumulado(poblacion);
-		Random r = new Random();
-		while (poblacionfinal.size() < poblacion.size()) {
-			double random = r.nextDouble();
-			Individuo<GenotipoR, FenotipoR, FitnessR> nuevo_individuo = seleccion_alg(mapaProbabilidadesAcumuladas, random);
-			//System.out.println("nuevo individuo: " + nuevo_individuo + " tamano de poblacion " + poblacion.size());
-			poblacionfinal.add(nuevo_individuo);
-		}
+		if(!maximizar){
+			//Se trata de un problema de minimizacion
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> aux = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>();
+			//Buscamos el mayor individuo de la poblacion para que haga de cmax
+			ComparadorIndividuo comparador = new ComparadorIndividuo(true);
+			poblacion.sort(comparador);
+			double cmax = poblacion.get(0).getFitness().getValorReal() * 1.05;
+			for(int i = 0; i< poblacion.size(); i++){
+				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).clone();
+				double fitness = individuo.getFitness().getValorReal();
+				double fitnessDesplazado = Math.abs(cmax - fitness);
+				FitnessReal f = new FitnessReal(fitnessDesplazado);
+				individuo.setFitness((FitnessR) f);
+				aux.add(individuo);
+			}
+			
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacionfinal = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>();
+			TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessR>> mapaProbabilidadesAcumuladas = calculaFitnessAcumulado(aux);
+			Random r = new Random();
+			while (poblacionfinal.size() < aux.size()) {
+				double random = r.nextDouble();
+				Individuo<GenotipoR, FenotipoR, FitnessR> nuevo_individuo = seleccion_alg(mapaProbabilidadesAcumuladas, random);
+				//System.out.println("nuevo individuo: " + nuevo_individuo + " tamano de poblacion " + poblacion.size());
+				poblacionfinal.add(nuevo_individuo);
+			}
 
-		return poblacionfinal;
+			return poblacionfinal;
+			
+		}
+		else{
+			//se trata de un problema de maximizacion
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> aux = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>();
+			//Buscamos el mayor individuo de la poblacion para que encuentre el Fmin
+			ComparadorIndividuo comparador = new ComparadorIndividuo(false);
+			poblacion.sort(comparador);
+			double fmin = poblacion.get(0).getFitness().getValorReal();
+			for(int i = 0; i< poblacion.size(); i++){
+				Individuo<GenotipoR, FenotipoR, FitnessR> individuo = poblacion.get(i).clone();
+				double fitness = individuo.getFitness().getValorReal();
+				double fitnessDesplazado = fitness + Math.abs(fmin) ;
+				FitnessReal f = new FitnessReal(fitnessDesplazado);
+				individuo.setFitness((FitnessR) f);
+				aux.add(individuo);
+			}
+			ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>> poblacionfinal = new ArrayList<Individuo<GenotipoR, FenotipoR, FitnessR>>();
+			TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessR>> mapaProbabilidadesAcumuladas = calculaFitnessAcumulado(aux);
+			Random r = new Random();
+			while (poblacionfinal.size() < aux.size()) {
+				double random = r.nextDouble();
+				Individuo<GenotipoR, FenotipoR, FitnessR> nuevo_individuo = seleccion_alg(mapaProbabilidadesAcumuladas, random);
+				//System.out.println("nuevo individuo: " + nuevo_individuo + " tamano de poblacion " + poblacion.size());
+				poblacionfinal.add(nuevo_individuo);
+			}
+
+			return poblacionfinal;
+		}
 	}
 
 	private TreeMap<Double, Individuo<GenotipoR, FenotipoR, FitnessR>> calculaFitnessAcumulado(
@@ -62,6 +109,7 @@ public class Ruleta<GenotipoR extends Genotipo, FenotipoR extends Fenotipo, Fitn
 				mapa.put(fitness_individuo, array);
 			} else {
 				// Ya había un individuo con ese fitness
+				System.out.println("Ya había un individuo con ese fitness");
 				mapa.get(fitness_individuo).add(poblacion.get(i));
 			}
 		}
