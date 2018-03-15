@@ -21,6 +21,7 @@ public class FactoriaPrimeraPoblacionBinario
 		switch(c.getProblema())
 		{
 			case 1: return (new PoblacionInicialF1Binario()).getPoblacionInicial(c);
+			case 2: return (new PoblacionInicialF2Binario()).getPoblacionInicial(c);
 			//case 2: return generaPrimeraPoblacionAleatoriaF2(c);
 			case 3: return (new PoblacionInicialF3Binario()).getPoblacionInicial(c);
 			//case 4: return generaPrimeraPoblacionAleatoriaF4(c);
