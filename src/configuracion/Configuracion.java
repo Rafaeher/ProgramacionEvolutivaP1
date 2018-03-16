@@ -43,7 +43,12 @@ public class Configuracion {
 		this.reproduccion_seleccionada = r;
 		this.mutacion_seleccionada = m;
 		this.seleccion_seleccionada = s;
-		this.problema = problema + 1;
+		if(problema + 1 == 5 && g.equals(Genotipo_enum.Real)){
+			this.problema = 6;
+		}
+		else{
+			this.problema = problema + 1;
+		}
 		this.cruceporcentaje = probcruce/100;
 		this.tamano_poblacion = tamano_poblacion;
 		//this.setProblema(problema);

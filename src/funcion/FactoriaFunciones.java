@@ -19,7 +19,7 @@ import individuo.Individuo;
 public class FactoriaFunciones <GenotipoFF extends Genotipo, FenotipoFF extends Fenotipo, FitnessFF extends Fitness> {
 
 	public Funcion<GenotipoFF,FenotipoFF,FitnessFF> getSeleccion(int f,
-			ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessFF>> poblacion,
+			ArrayList<Individuo<GenotipoFF,FenotipoFF, FitnessFF>> poblacion,
 			Configuracion c)
     {
     	switch(f)
@@ -29,6 +29,8 @@ public class FactoriaFunciones <GenotipoFF extends Genotipo, FenotipoFF extends 
 			case 3: return new F3(poblacion,c);
 			case 4: return new F4(poblacion,c);
 			case 5: return new F5(poblacion,c); 
+			//6 es la F5 en real
+			case 6: return new F5(poblacion,c); 
 			default: return null;
 		}
     }
