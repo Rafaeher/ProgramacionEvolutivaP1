@@ -98,9 +98,9 @@ public class VariosPuntosBinario<FenotipoVPB extends Fenotipo, FitnessVPB extend
 
 		if (r.nextDouble() < 0.5) {
 			int Acambiar = r.nextInt(genotipoInd1.getGen(0).getTamGen()-1);
-			boolean aux = genotipoInd1.getGenes().get(0).getBit(Acambiar);
-			genotipoInd1.getGenes().get(0).setBit(Acambiar, genotipoInd2.getGenes().get(0).getBit(Acambiar));
-			genotipoInd1.getGenes().get(0).setBit(Acambiar, aux);
+			boolean aux = genotipoInd1.getBitDeGen(0, Acambiar);
+			genotipoInd1.setBitDeGen(0, Acambiar, genotipoInd2.getBitDeGen(0, Acambiar));
+			genotipoInd2.setBitDeGen(0, Acambiar, aux);
 		}
 		individuo1.getFenotipo();
 		individuo2.getFenotipo();

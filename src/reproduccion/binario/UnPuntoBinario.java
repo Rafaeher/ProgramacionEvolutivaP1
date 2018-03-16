@@ -78,11 +78,10 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, FitnessUPB extends Fit
 		int random = r.nextInt(tamano_gen);
 		for (int i = random; i < tamano_gen; i++)
 		{
-			boolean aux = individuo1.getGenotipo().getGenes().get(0).getCodigo().get(i);
-			individuo1.getGenotipo().getGenes().get(0).getCodigo().set(i,
-					individuo2.getGenotipo().getGenes().get(0).getCodigo().get(i));
-
-			individuo2.getGenotipo().getGenes().get(0).getCodigo().set(i, aux);
+			boolean aux = individuo1.getGenotipo().getBitDeGen(0, i);
+			individuo1.getGenotipo().setBitDeGen(0, i, individuo2.getGenotipo().getBitDeGen(0, i));
+			individuo2.getGenotipo().setBitDeGen(0, i, aux);
+			
 
 		}
 		individuo1.getFenotipo();
