@@ -75,4 +75,10 @@ public class GenReal implements Cloneable
         resultado = (resultado/Math.pow(10, numeroDecimales))+parteEntera;
         return resultado;
     }
+	
+	@Override
+	public Object clone()
+	{
+		return new GenReal(valor, minimo, maximo);
+	}
 }
