@@ -1,4 +1,4 @@
-package poblacionInicial;
+package poblacionInicial.binario;
 
 import java.util.ArrayList;
 
@@ -10,12 +10,13 @@ import fitness.FitnessReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 import individuo.Individuo;
+import poblacionInicial.PoblacionInicial;
 
-public class PoblacionInicialF1Binario extends PoblacionInicialF1 {
+public class PoblacionInicialF1Binario implements PoblacionInicial
+{
 
-	@SuppressWarnings("unchecked")
 	@Override
-	protected ArrayList<Individuo<?, ?, ?>> getPoblacion(Configuracion config)
+	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config)
 	{
 		ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>> poblacion = new ArrayList<Individuo<GenotipoBinario,FenotipoReal, FitnessReal>>();
 		
@@ -45,5 +46,4 @@ public class PoblacionInicialF1Binario extends PoblacionInicialF1 {
 		
 		return (ArrayList<Individuo<?, ?, ?>>) ((ArrayList<?>) poblacion);
 	}
-
 }
