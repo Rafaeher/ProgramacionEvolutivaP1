@@ -17,7 +17,7 @@ import configuracion.Seleccion_enum;
  * @author carlo
  */
 public class PanelInfo extends javax.swing.JPanel {
-    
+    private String tipo;
     /**
      * Creates new form NewJPanel
      */
@@ -330,6 +330,8 @@ public class PanelInfo extends javax.swing.JPanel {
   		   JOptionPane.showMessageDialog(null,"Error: Faltan datos", "error", JOptionPane.ERROR_MESSAGE);
   	   }
   	   else {
+  		   String tipo = (String) this.jComboBoxTipo.getSelectedItem();
+	       this.tipo = tipo;
   		   int tamano_poblacion = Integer.parseInt(this.jTextFieldPoblacion.getText());
   	       int num_generaciones = Integer.parseInt(this.jTextFieldGeneraciones.getText());
   	       String seleccion = (String) this.jComboBoxSeleccion.getSelectedItem();
@@ -349,7 +351,6 @@ public class PanelInfo extends javax.swing.JPanel {
   	       Genotipo_enum g = getGenotipo(genotipo);
   	       Mutacion_enum m = getMutacion("");
   	       int parametrosf5 = this.jComboBoxProblemas1.getSelectedIndex() + 1;
-  	      
   	       
   	       if(true) {
   	    	   Configuracion c = new Configuracion(true,precision,num_generaciones,
@@ -387,14 +388,24 @@ private Seleccion_enum getSeleccion(String s) {
      }
      
      private Reproduccion_enum getReproduccion(String s) {
-  	   if(s.equalsIgnoreCase("Un punto")) return Reproduccion_enum.Un_punto;
-  	   else if (s.equalsIgnoreCase("Varios puntos")) return Reproduccion_enum.Varios_puntos;
-  	   else if (s.equalsIgnoreCase("Uniforme")) return Reproduccion_enum.Uniforme;
+  	   if(s.equalsIgnoreCase("Un punto") && 
+  			   this.tipo.equalsIgnoreCase("Binario")) return Reproduccion_enum.Un_punto;
+  	   else if (s.equalsIgnoreCase("Varios puntos") &&
+  			 this.tipo.equalsIgnoreCase("Binario")) return Reproduccion_enum.Varios_puntos;
+  	   else if (s.equalsIgnoreCase("Uniforme") && 
+  			 this.tipo.equalsIgnoreCase("Binario")) return Reproduccion_enum.Uniforme;
+  	   else  if(s.equalsIgnoreCase("Un punto") && 
+  			   this.tipo.equalsIgnoreCase("Real")) return Reproduccion_enum.Un_punto_Real;
+  	   else if (s.equalsIgnoreCase("Varios puntos") &&
+  			 this.tipo.equalsIgnoreCase("Real")) return Reproduccion_enum.Varios_puntos_Real;
+  	   else if (s.equalsIgnoreCase("Uniforme") && 
+  			 this.tipo.equalsIgnoreCase("Real")) return Reproduccion_enum.Uniforme_Real;
   	   else return null;
      }
 
      private Mutacion_enum getMutacion(String s) {
-  	   return Mutacion_enum.Normal;
+    	 if(this.tipo.equalsIgnoreCase("Binario"))return Mutacion_enum.Normal;
+    	 else return Mutacion_enum.Normal_Real;
      }
      
      private Genotipo_enum getGenotipo(String s){
