@@ -2,7 +2,6 @@ package genotipo;
 
 import java.util.ArrayList;
 
-import genotipo.genes.GenBinario;
 import genotipo.genes.GenReal;
 
 public class GenotipoReal implements Genotipo
@@ -10,7 +9,7 @@ public class GenotipoReal implements Genotipo
     ArrayList<GenReal> genes;
 
     public GenotipoReal() {
-    	genes = new  ArrayList<Double>();
+    	genes = new  ArrayList<GenReal>();
     }
     
     /**
@@ -18,18 +17,18 @@ public class GenotipoReal implements Genotipo
      * 
      * @param genes
      */
-    public GenotipoReal(ArrayList<Double> genes)
+    public GenotipoReal(ArrayList<GenReal> genes)
     {
     	this.genes = genes;
     }
     
-	public ArrayList<Double> getGenes()
+	public ArrayList<GenReal> getGenes()
 	{
-		ArrayList<Double> genesCopia = new ArrayList<Double>();
+		ArrayList<GenReal> genesCopia = new ArrayList<GenReal>();
 		
 		for(int i = 0; i < genes.size(); i++)
 		{
-			genesCopia.add(genes.get(i));
+			genesCopia.add((GenReal) genes.get(i).clone());
 		}
 		
 		return genesCopia;
@@ -45,12 +44,27 @@ public class GenotipoReal implements Genotipo
 		return genes.size();
 	}
 
-	public Double getGen(int indice)
+	public GenReal getGen(int indice)
 	{
-		return genes.get(indice);
+		return (GenReal) genes.get(indice).clone();
 	}
 	
-	public void setGen(int indice, Double gen){
+	public double getMaxGen(int indice)
+	{
+		return genes.get(indice).getMaximo();
+	}
+	
+	public double getMinGen(int indice)
+	{
+		return genes.get(indice).getMinimo();
+	}
+	
+	public double getValorGen(int indice)
+	{
+		return genes.get(indice).getValor();
+	}
+	
+	public void setGen(int indice, GenReal gen){
 		genes.set(indice, gen);
 	}
 
@@ -59,7 +73,7 @@ public class GenotipoReal implements Genotipo
 	 *
 	 * @param cromosomasE: genes de entrada
 	 */
-	public void setGenes(ArrayList<Double> genesE)
+	public void setGenes(ArrayList<GenReal> genesE)
 	{
 		genes = genesE;
 	}
@@ -70,7 +84,7 @@ public class GenotipoReal implements Genotipo
 		GenotipoReal clon = new GenotipoReal();
 		for(int i = 0; i < genes.size(); i++)
 		{
-			clon.genes.add(i, genes.get(i));
+			clon.genes.add((GenReal) genes.get(i).clone());
 		}
 		
 		return clon;
