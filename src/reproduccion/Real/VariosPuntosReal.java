@@ -75,14 +75,14 @@ public class VariosPuntosReal<FenotipoVPB extends Fenotipo, FitnessVPB extends F
 
 		if (r.nextDouble() < 0.5) {
 			int genACambiar = r.nextInt(genotipoInd1.getGenes().size()-1);
-			GenBinario aux = genotipoInd1.getGenes().get(genACambiar);
+			Double aux = genotipoInd1.getGenes().get(genACambiar);
 				genotipoInd1.setGen(genACambiar, genotipoInd2.getGenes().get(genACambiar));
 				genotipoInd2.setGen(genACambiar, aux);
 			
 		}
 		individuo1.getFenotipo();
 		individuo2.getFenotipo();
-		ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessVPB>> sol = new ArrayList<Individuo<GenotipoBinario, FenotipoReal, FitnessVPB>>();
+		ArrayList<Individuo<GenotipoReal, FenotipoReal, FitnessVPB>> sol = new ArrayList<Individuo<GenotipoReal, FenotipoReal, FitnessVPB>>();
 		sol.add(individuo1);
 		sol.add(individuo2);
 

@@ -9,7 +9,6 @@ import fenotipo.FenotipoReal;
 import fitness.Fitness;
 //import genotipo.GenotipoBinario;
 import genotipo.GenotipoReal;
-import genotipo.genes.GenReal;
 //import genotipo.genes.GenBinario;
 import individuo.Individuo;
 import reproduccion.Reproduccion;
@@ -76,20 +75,15 @@ public class UnPuntoReal<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitnes
 
 		int num_genes = individuo1.getGenotipo().getNumGenes();
 		int random = r.nextInt(num_genes);
-		ArrayList<GenReal> genesIndividuo1 = new ArrayList<GenReal>(individuo1.getGenotipo().getGenes());
-		ArrayList<GenReal> genesIndividuo2 = new ArrayList<GenReal>(individuo2.getGenotipo().getGenes());
+		
 		for (int i = random; i < num_genes; i++) {
-			GenReal aux1 = new GenReal(individuo1.getGenotipo().getGenes().get(i).getTamGen());
-			Double gen1 = new Double(individuo1.getGenotipo().getValorDeGen(i, indiceValor));
-			aux1.setCodigo(gen1);
-			GenBinario aux2 = new GenBinario(individuo2.getGenotipo().getGenes().get(i).getTamGen());
-			ArrayList<Boolean> gen2 = new ArrayList<Boolean>(individuo2.getGenotipo().getGenes().get(i).getCodigo());
-			aux2.setCodigo(gen2);
-			genesIndividuo1.set(i, aux2);
-			genesIndividuo2.set(i, aux1);
+			Double aux1 = new Double(individuo1.getGenotipo().getGenes().get(i));
+			Double aux2 = new Double(individuo2.getGenotipo().getGenes().get(i));
+			
+			individuo1.getGenotipo().setGen(i, aux2);
+			individuo2.getGenotipo().setGen(i, aux1);
+
 		}
-		individuo1.getGenotipo().setGenes(genesIndividuo1);
-		individuo2.getGenotipo().setGenes(genesIndividuo2);
 		
 		individuo1.getFenotipo();
 		individuo2.getFenotipo();
