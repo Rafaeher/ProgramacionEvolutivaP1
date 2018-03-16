@@ -56,7 +56,7 @@ public class GenotipoReal implements Genotipo
 	
 	public double getMinGen(int indice)
 	{
-		return genes.get(indice).getMinimo();
+		return genes.get(indice).minimo();
 	}
 	
 	public double getValorGen(int indice)

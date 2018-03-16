@@ -27,13 +27,13 @@ public class DecodificadorBinarioReal extends DecodificadorEslabon
             	   fenotipo.setFenotipoDelGen(i, fenotipo.getCaracteristicas().get(i).getMin() + genesInt * (fenotipo.getCaracteristicas().get(i).getMax() - fenotipo.getCaracteristicas().get(i).getMin()) / (Math.pow(2, numGenes) - 1));
                }
                catch(Exception e){
-            	   System.out.println(e.getMessage());
+            	   System.err.println(e.getMessage());
                }
                 
             }
         }
         else
-            (new DecodificadorFinal()).decodifica(genotipoE, fenotipoE);
+            (new DecodificadorRealReal()).decodifica(genotipoE, fenotipoE);
 
     }
 }

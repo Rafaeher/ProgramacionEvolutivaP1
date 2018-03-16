@@ -32,7 +32,7 @@ public class GenReal implements Cloneable
 		return valor;
 	}
 	
-	public double getMinimo()
+	public double minimo()
 	{
 		return minimo;
 	}
@@ -57,11 +57,11 @@ public class GenReal implements Cloneable
 		maximo = maximoE;
 	}
 	
-	public void inicializaAleatoriamente(double minimoE, double maximoE, double precision)
+	public void inicializaValorAleatoriamente(double precision)
 	{
 		Random random = new Random();
 		int numDecimales = (int) Math.round((Math.log10(1.0 / precision)));
-		valor = random.nextDouble() * (maximoE - minimoE) + minimoE;
+		valor = random.nextDouble() * (maximo - minimo) + minimo;
 		valor = redondeo(valor, numDecimales);
 	}
 	
