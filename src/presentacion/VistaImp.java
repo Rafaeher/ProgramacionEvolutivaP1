@@ -56,9 +56,7 @@ public class VistaImp extends Vista {
 		
 		
 		if(panelInfo.isPopUpsSelected()){
-			int numDecimales = (int) Math.round((Math.log10(1.0 / panelInfo.getError())));
-			double mejor = GenReal.redondeo(y_mejorAbsoluto[y_mejorAbsoluto.length-1], numDecimales);
-			JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + mejor);
+			JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
 		}
 
 	}

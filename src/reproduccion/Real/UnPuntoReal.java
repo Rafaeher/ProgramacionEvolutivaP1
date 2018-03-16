@@ -32,7 +32,7 @@ public class UnPuntoReal<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitnes
 			int Indindividuo2 = r.nextInt(poblacionAux.size() - 1);
 			double random = r.nextDouble();
 			if (random <= c.getCruceporcentaje()) {
-				System.out.println("Porcentaje de cruce " + c.getCruceporcentaje());
+				//System.out.println("Porcentaje de cruce " + c.getCruceporcentaje());
 				if (p.get(i) != null && p.get(i + 1) != null) {
 					Individuo<GenotipoReal, FenotipoReal, FitnessUPB> individuo1 = poblacionAux.get(Indindividuo1)
 							.clone();

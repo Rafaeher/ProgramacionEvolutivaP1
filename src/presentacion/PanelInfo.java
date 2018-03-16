@@ -313,6 +313,7 @@ public class PanelInfo extends javax.swing.JPanel {
 
     private void jComboBoxCruceActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
+    	
     }                                              
 
     private void jTextFieldCruceporcentajeActionPerformed(java.awt.event.ActionEvent evt) {                                                          
