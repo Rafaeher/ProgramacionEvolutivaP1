@@ -99,9 +99,6 @@ public class UnPuntoBinario<FenotipoUPB extends Fenotipo, FitnessUPB extends Fit
 		Random r = new Random();
 
 		int num_genes = individuo1.getGenotipo().getNumGenes();
-		if (num_genes > 2) {
-			System.out.println("tendria que haber varios dos genes");
-		}
 		int random = r.nextInt(num_genes);
 		ArrayList<GenBinario> genesIndividuo1 = new ArrayList<GenBinario>(individuo1.getGenotipo().getGenes());
 		ArrayList<GenBinario> genesIndividuo2 = new ArrayList<GenBinario>(individuo2.getGenotipo().getGenes());
