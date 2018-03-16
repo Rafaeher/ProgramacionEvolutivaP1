@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import configuracion.Configuracion;
 import individuo.Individuo;
-import poblacionInicial.PoblacionInicialF1Binario;
-import poblacionInicial.PoblacionInicialF3Binario;
+import poblacionInicial.binario.PoblacionInicialF1Binario;
+import poblacionInicial.binario.PoblacionInicialF2Binario;
+import poblacionInicial.binario.PoblacionInicialF3Binario;
+import poblacionInicial.binario.PoblacionInicialF4Binario;
+import poblacionInicial.binario.PoblacionInicialF5Binario;
 
 public class FactoriaPrimeraPoblacionBinario
 {

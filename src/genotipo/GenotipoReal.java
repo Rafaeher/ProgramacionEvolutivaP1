@@ -3,10 +3,11 @@ package genotipo;
 import java.util.ArrayList;
 
 import genotipo.genes.GenBinario;
+import genotipo.genes.GenReal;
 
 public class GenotipoReal implements Genotipo
 {
-    ArrayList<Double> genes;
+    ArrayList<GenReal> genes;
 
     public GenotipoReal() {
     	genes = new  ArrayList<Double>();

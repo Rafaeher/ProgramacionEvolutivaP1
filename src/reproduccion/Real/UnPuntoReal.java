@@ -7,9 +7,10 @@ import configuracion.Configuracion;
 import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fitness.Fitness;
-//import genotipo.GenotipoBinario;
 import genotipo.GenotipoReal;
-//import genotipo.genes.GenBinario;
+
+import genotipo.genes.GenReal;
+
 import individuo.Individuo;
 import reproduccion.Reproduccion;
 
