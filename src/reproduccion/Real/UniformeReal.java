@@ -9,6 +9,7 @@ import fenotipo.FenotipoReal;
 import fitness.Fitness;
 
 import genotipo.GenotipoReal;
+import genotipo.genes.GenReal;
 import individuo.Individuo;
 import reproduccion.Reproduccion;
 
@@ -75,9 +76,9 @@ public class UniformeReal<FenotipoUB extends Fenotipo, FitnessUB extends Fitness
 		for(int i = 0; i < genotipoInd1.getNumGenes(); i++){
 			if (r.nextDouble() < P_CRUCE_GEN) {
 				
-				Double aux = genotipoInd1.getGenes().get(i);
-					genotipoInd1.setGen(i, genotipoInd2.getGenes().get(i));
-					genotipoInd2.setGen(i, aux);
+				GenReal aux = genotipoInd1.getGenes().get(i);
+				genotipoInd1.setGen(i, genotipoInd2.getGenes().get(i));
+				genotipoInd2.setGen(i, aux);
 				
 			}
 		}

@@ -1,9 +1,8 @@
 package mutacion;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-
 import genotipo.GenotipoReal;
+import genotipo.genes.GenReal;
 
 public class MutacionEstandarReal<Fenotipo, Fitness> implements Mutacion<GenotipoReal, Fenotipo, Fitness> {
 
@@ -13,7 +12,11 @@ public class MutacionEstandarReal<Fenotipo, Fitness> implements Mutacion<Genotip
 			Random r = new Random();
 			double random = r.nextDouble();
 			if (random < prob_mutacion) {
-
+				Double genotipoNuevo = r.nextDouble ()*(genotipo.getMaxGen(i) - genotipo.getMinGen(i))
+						+ genotipo.getMinGen(i);
+				GenReal gen = new GenReal();
+				gen.setValor(genotipoNuevo);
+				genotipo.setGen(i, gen);
 			}
 		}
 

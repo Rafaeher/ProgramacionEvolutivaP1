@@ -78,8 +78,8 @@ public class UnPuntoReal<FenotipoUPB extends Fenotipo, FitnessUPB extends Fitnes
 		int random = r.nextInt(num_genes);
 		
 		for (int i = random; i < num_genes; i++) {
-			Double aux1 = new Double(individuo1.getGenotipo().getGenes().get(i));
-			Double aux2 = new Double(individuo2.getGenotipo().getGenes().get(i));
+			GenReal aux1 =individuo1.getGenotipo().getGenes().get(i);
+			GenReal aux2 =individuo1.getGenotipo().getGenes().get(i);
 			
 			individuo1.getGenotipo().setGen(i, aux2);
 			individuo2.getGenotipo().setGen(i, aux1);

@@ -8,6 +8,7 @@ import fenotipo.Fenotipo;
 import fenotipo.FenotipoReal;
 import fitness.Fitness;
 import genotipo.GenotipoReal;
+import genotipo.genes.GenReal;
 //import genotipo.GenotipoBinario;
 //import genotipo.genes.GenBinario;
 import individuo.Individuo;
@@ -75,7 +76,7 @@ public class VariosPuntosReal<FenotipoVPB extends Fenotipo, FitnessVPB extends F
 
 		if (r.nextDouble() < 0.5) {
 			int genACambiar = r.nextInt(genotipoInd1.getGenes().size()-1);
-			Double aux = genotipoInd1.getGenes().get(genACambiar);
+			GenReal aux = genotipoInd1.getGenes().get(genACambiar);
 				genotipoInd1.setGen(genACambiar, genotipoInd2.getGenes().get(genACambiar));
 				genotipoInd2.setGen(genACambiar, aux);
 			

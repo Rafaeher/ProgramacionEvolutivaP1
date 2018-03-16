@@ -11,6 +11,7 @@ public class FactoriaMutacionImp extends FactoriaMutacion
         switch(tipo)
         {
             case Normal: return new MutacionEstandarBinario();
+            case Normal_Real: return new MutacionEstandarReal();
             default: return null;
         }
     }
