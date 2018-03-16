@@ -32,12 +32,12 @@ public class GenReal implements Cloneable
 		return valor;
 	}
 	
-	public double minimo()
+	public double getMinimo()
 	{
 		return minimo;
 	}
 	
-	public double maximo()
+	public double getMaximo()
 	{
 		return maximo;
 	}
