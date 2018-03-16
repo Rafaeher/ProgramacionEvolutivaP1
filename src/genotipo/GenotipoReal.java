@@ -3,33 +3,32 @@ package genotipo;
 import java.util.ArrayList;
 
 import genotipo.genes.GenBinario;
-import genotipo.genes.GenReal;
 
 public class GenotipoReal implements Genotipo
 {
-    ArrayList<GenReal> genes;
+    ArrayList<Double> genes;
 
     public GenotipoReal() {
-    	genes = new  ArrayList<GenReal>();
+    	genes = new  ArrayList<Double>();
     }
     
     /**
-     * Constructora a partir de los gens
+     * Constructora a partir de los genes
      * 
      * @param genes
      */
-    public GenotipoReal(ArrayList<GenReal> genes)
+    public GenotipoReal(ArrayList<Double> genes)
     {
     	this.genes = genes;
     }
     
-	public ArrayList<GenReal> getGenes()
+	public ArrayList<Double> getGenes()
 	{
-		ArrayList<GenReal> genesCopia = new ArrayList<GenReal>();
+		ArrayList<Double> genesCopia = new ArrayList<Double>();
 		
 		for(int i = 0; i < genes.size(); i++)
 		{
-			genesCopia.add((GenReal) genes.get(i).clone());
+			genesCopia.add(genes.get(i));
 		}
 		
 		return genesCopia;
@@ -45,12 +44,12 @@ public class GenotipoReal implements Genotipo
 		return genes.size();
 	}
 
-	public GenReal getGen(int indice)
+	public Double getGen(int indice)
 	{
-		return (GenReal) genes.get(indice).clone();
+		return genes.get(indice);
 	}
 	
-	public void setGen(int indice, GenReal gen){
+	public void setGen(int indice, Double gen){
 		genes.set(indice, gen);
 	}
 
@@ -59,44 +58,9 @@ public class GenotipoReal implements Genotipo
 	 *
 	 * @param cromosomasE: genes de entrada
 	 */
-	public void setGenes(ArrayList<GenReal> genesE)
+	public void setGenes(ArrayList<Double> genesE)
 	{
 		genes = genesE;
-	}
-	
-	/**
-	 * Devuelve el tamaño del gen i - ésimo
-	 * 
-	 * @indice
-	 * @return
-	 */
-	public int getTamGen(int indice)
-	{
-		return genes.get(indice).getTamGen();
-	}
-	
-	/**
-	 * Devuelve el valor i - ésimo del gen j - ésimo
-	 * 
-	 * @param indiceGen
-	 * @param indiceValor
-	 * @return
-	 */
-	public double getValorDeGen(int indiceGen, int indiceValor)
-	{
-		return genes.get(indiceGen).getValor(indiceValor);
-	}
-	
-	/**
-	 * Actualiza el valor del valor i - ésimo del gen j - ésimo
-	 * 
-	 * @param indiceGen
-	 * @param indiceValor
-	 * @param valor
-	 */
-	public void setBitDeGen(int indiceGen, int indiceValor, double valor)
-	{
-		genes.get(indiceGen).setBit(indiceValor, valor);
 	}
 	
 	@Override
@@ -105,7 +69,7 @@ public class GenotipoReal implements Genotipo
 		GenotipoReal clon = new GenotipoReal();
 		for(int i = 0; i < genes.size(); i++)
 		{
-			clon.genes.add(i, (GenReal) genes.get(i).clone());
+			clon.genes.add(i, genes.get(i));
 		}
 		
 		return clon;
