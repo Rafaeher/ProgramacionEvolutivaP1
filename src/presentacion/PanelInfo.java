@@ -417,6 +417,9 @@ private Seleccion_enum getSeleccion(String s) {
      public boolean isPopUpsSelected(){
     	 return jCheckBox1.isSelected();
      }	
+     public double getError(){
+    	 return Double.parseDouble(this.jTextFieldError.getText());
+     }
 
 
     // Variables declaration - do not modify                     

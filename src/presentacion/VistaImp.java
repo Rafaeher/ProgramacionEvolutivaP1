@@ -7,6 +7,8 @@ import javax.swing.JOptionPane;
 
 import org.math.plot.Plot2DPanel;
 
+import genotipo.genes.GenReal;
+
 public class VistaImp extends Vista {
 
 	private  PanelInfo panelInfo;
@@ -54,7 +56,9 @@ public class VistaImp extends Vista {
 		
 		
 		if(panelInfo.isPopUpsSelected()){
-			 JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
+			int numDecimales = (int) Math.round((Math.log10(1.0 / panelInfo.getError())));
+			double mejor = GenReal.redondeo(y_mejorAbsoluto[y_mejorAbsoluto.length-1], numDecimales);
+			JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + mejor);
 		}
 
 	}

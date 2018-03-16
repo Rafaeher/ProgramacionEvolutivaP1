@@ -73,7 +73,7 @@ public class VariosPuntosBinario<FenotipoVPB extends Fenotipo, FitnessVPB extend
 		Random r = new Random();
 
 		if (r.nextDouble() < 0.5) {
-			int genACambiar = r.nextInt(genotipoInd1.getGenes().size()-1);
+			int genACambiar = r.nextInt(genotipoInd1.getGenes().size());
 			GenBinario aux = genotipoInd1.getGenes().get(genACambiar);
 				genotipoInd1.setGen(genACambiar, genotipoInd2.getGenes().get(genACambiar));
 				genotipoInd2.setGen(genACambiar, aux);
