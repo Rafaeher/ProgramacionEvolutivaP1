@@ -33,9 +33,9 @@ public class MutacionEstandarBinario<Fenotipo,Fitness> implements Mutacion<Genot
 				double random = r.nextDouble();
 				if (random < prob_mutacion){
 					if(genotipo.getGen(i).getCodigo().get(j))
-						genotipo.getGen(i).getCodigo().set(j, false);
+						genotipo.setBitDeGen(i, j, false);
 					else
-						genotipo.getGen(i).getCodigo().set(j, true);
+						genotipo.setBitDeGen(i, j, true);
 				}
 			}
 		}
