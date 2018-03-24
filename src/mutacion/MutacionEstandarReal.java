@@ -1,10 +1,13 @@
 package mutacion;
 
 import java.util.Random;
+
+import fenotipo.Fenotipo;
+import fitness.Fitness;
 import genotipo.GenotipoReal;
 import genotipo.genes.GenReal;
 
-public class MutacionEstandarReal<Fenotipo, Fitness> implements Mutacion<GenotipoReal, Fenotipo, Fitness> {
+public class MutacionEstandarReal<FenotipoMER extends Fenotipo, FitnessMER extends Fitness> implements Mutacion<GenotipoReal, FenotipoMER, FitnessMER> {
 
 	@Override
 	public void muta(GenotipoReal genotipo, double prob_mutacion) {

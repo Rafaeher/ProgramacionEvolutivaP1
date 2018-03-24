@@ -87,13 +87,7 @@ public class Configuracion {
 	public void setPrecision(double precision) {
 		this.precision = precision;
 	}
-	
-	/*public int getNumParametros() {
-		return numParametros;
-	}
-	public void setNumParametros(int numParametros) {
-		this.numParametros = numParametros;
-	}*/
+
 	public Reproduccion_enum getReproduccion_seleccionada() {
 		return reproduccion_seleccionada;
 	}

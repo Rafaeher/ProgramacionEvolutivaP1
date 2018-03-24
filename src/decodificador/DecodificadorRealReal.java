@@ -2,7 +2,6 @@ package decodificador;
 
 import fenotipo.FenotipoReal;
 import genotipo.GenotipoReal;
-import genotipo.genes.GenBinario;
 
 public class DecodificadorRealReal extends DecodificadorEslabon {
 

@@ -1,7 +1,6 @@
 package genotipo.genes;
 
 import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class GenReal implements Cloneable
 {

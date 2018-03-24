@@ -1,7 +1,5 @@
 package presentacion;
 
-import javax.swing.JFrame;
-
 public abstract class Vista {
 
 	private static Vista instance;

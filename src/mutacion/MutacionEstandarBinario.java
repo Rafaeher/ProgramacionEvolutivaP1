@@ -2,9 +2,11 @@ package mutacion;
 
 import java.util.Random;
 
+import fenotipo.Fenotipo;
+import fitness.Fitness;
 import genotipo.GenotipoBinario;
 
-public class MutacionEstandarBinario<Fenotipo,Fitness> implements Mutacion<GenotipoBinario,Fenotipo,Fitness>
+public class MutacionEstandarBinario<FenotipoMEB extends Fenotipo, FitnessMEB extends Fitness> implements Mutacion<GenotipoBinario, FenotipoMEB, FitnessMEB>
 {
 	
 	@Override

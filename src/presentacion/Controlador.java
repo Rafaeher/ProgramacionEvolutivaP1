@@ -2,18 +2,13 @@ package presentacion;
 
 import java.util.ArrayList;
 
-import javax.swing.JFrame;
-
 import configuracion.Configuracion;
-import decodificador.Decodificador;
 import fenotipo.FenotipoReal;
 import fitness.FitnessReal;
-import funcion.F1;
 import funcion.FactoriaFunciones;
 import funcion.Funcion;
 import genotipo.GenotipoBinario;
 import genotipo.GenotipoReal;
-import genotipo.genes.GenBinario;
 import individuo.Individuo;
 import poblacionInicial.FactoriaPrimeraPoblacionBinario;
 

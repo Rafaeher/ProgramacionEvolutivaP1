@@ -117,6 +117,7 @@ public class Individuo<GenotipoI extends Genotipo, FenotipoI extends Fenotipo, F
 	/**
 	 * Clona un individuo
 	 */
+	@SuppressWarnings("unchecked")
 	public Individuo<GenotipoI, FenotipoI, FitnessI> clone()
 	{
 		Individuo<GenotipoI, FenotipoI, FitnessI> clon = new Individuo<GenotipoI, FenotipoI, FitnessI>();

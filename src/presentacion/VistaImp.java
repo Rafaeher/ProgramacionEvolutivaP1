@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 import org.math.plot.Plot2DPanel;
 
-import genotipo.genes.GenReal;
-
 public class VistaImp extends Vista {
 
 	private  PanelInfo panelInfo;
@@ -50,13 +48,13 @@ public class VistaImp extends Vista {
 		y_mejorAbsoluto[0] = aux;
 		plot.removeAllPlots();
 		plot.addLegend("SOUTH");
-		plot.addLinePlot("Mejor Absoluto", x_generaciones, y_mejorAbsoluto);
-		plot.addLinePlot("Mejor de la generacion", x_generaciones, y_mejorPoblacion);
-		plot.addLinePlot("Media de la poblacion", x_generaciones, y_media);
+		plot.addLinePlot("Mejor absoluto", x_generaciones, y_mejorAbsoluto);
+		plot.addLinePlot("Mejor de la generación", x_generaciones, y_mejorPoblacion);
+		plot.addLinePlot("Media de la población", x_generaciones, y_media);
 		
 		
 		if(panelInfo.isPopUpsSelected()){
-			JOptionPane.showMessageDialog(null, "Mejor de la poblacion " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
+			JOptionPane.showMessageDialog(null, "Mejor de la población " + y_mejorAbsoluto[y_mejorAbsoluto.length-1]);
 		}
 
 	}

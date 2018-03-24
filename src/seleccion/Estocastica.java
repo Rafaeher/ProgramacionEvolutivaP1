@@ -2,8 +2,7 @@ package seleccion;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Random;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 
 import configuracion.Configuracion;
@@ -18,18 +17,17 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 		implements Seleccion<GenotipoE, FenotipoE, FitnessE>
 {
 
-	private boolean maximizar;
+	@SuppressWarnings("unchecked")
 	@Override
-	public ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> Selecciona(
-			ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> poblacion,
-			Configuracion c, boolean maximizar) {
-		this.maximizar = maximizar;
-		
+	public ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>
+	selecciona
+	(ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> poblacion, Configuracion c, boolean maximizar)
+	{
 		if(!maximizar){
 			//Se trata de un problema de minimizacion
 			ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> aux = new ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>();
 			//Buscamos el mayor individuo de la poblacion para que haga de cmax
-			ComparadorIndividuo comparador = new ComparadorIndividuo(true);
+			ComparadorIndividuo<GenotipoE, FenotipoE, FitnessE> comparador = new ComparadorIndividuo<GenotipoE, FenotipoE, FitnessE>(true);
 			poblacion.sort(comparador);
 			double cmax = poblacion.get(0).getFitness().getValorReal() * 1.05;
 			for(int i = 0; i< poblacion.size(); i++){
@@ -95,36 +93,29 @@ public class Estocastica<GenotipoE extends Genotipo, FenotipoE extends Fenotipo,
 		
 		TreeMap<Double, Individuo<GenotipoE, FenotipoE, FitnessE>> mapaProbabilidadesAcumuladas = new TreeMap<Double, Individuo<GenotipoE, FenotipoE, FitnessE>>();
 		// recorro el mapa
-		Iterator it = mapa.entrySet().iterator();
+		Iterator<Entry<Double, ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>>> it = mapa.entrySet().iterator();
 		double acumulada = 0;
 		while (it.hasNext()) {
-			Map.Entry e = (Map.Entry) it.next();
-			ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> arrayaux = (ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>) e
+			Entry<Double, ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>>> e = it.next();
+			ArrayList<Individuo<GenotipoE, FenotipoE, FitnessE>> arrayaux = e
 					.getValue();
 			for (int i = 0; i < arrayaux.size(); i++) {
-				acumulada = acumulada + ((Double) e.getKey() / fitnessTotal);
+				acumulada = acumulada + (e.getKey() / fitnessTotal);
 				mapaProbabilidadesAcumuladas.put(acumulada, arrayaux.get(i));
 			}
 
 		}
 		return mapaProbabilidadesAcumuladas;
 	}
-	/*
-	 * ArrayList<Double> prob_seleccion = new ArrayList<Double>(); double acumulada
-	 * = 0;for( int i = 0;i<poblacion.size();i++) { acumulada = acumulada +
-	 * ((Double) poblacion.get(i).getFitness() / fitnessTotal);
-	 * prob_seleccion.add(acumulada); }return prob_seleccion;
-	 */
-	// }
 
 	private Individuo<GenotipoE, FenotipoE, FitnessE> seleccion_alg(
-			TreeMap<Double, Individuo<GenotipoE, FenotipoE, FitnessE>> mapa, double posicion) {
+			TreeMap<Double, Individuo<GenotipoE, FenotipoE, FitnessE>> mapa, double posicion)
+	{
 		boolean encontrado = false;
 		Individuo<GenotipoE, FenotipoE, FitnessE> individuoseleccionado = null;
-		int i = 0;
-		Iterator it = mapa.entrySet().iterator();
+		Iterator<Entry<Double, Individuo<GenotipoE, FenotipoE, FitnessE>>> it = mapa.entrySet().iterator();
 		while (it.hasNext() && !encontrado) {
-			Map.Entry e = (Map.Entry) it.next();
+			Entry<Double, Individuo<GenotipoE, FenotipoE, FitnessE>> e = it.next();
 			//System.out.println("individuo " + i +" " + e.getKey());
 			//i++;
 			if(individuoseleccionado == null) individuoseleccionado = (Individuo<GenotipoE, FenotipoE, FitnessE>)e.getValue();

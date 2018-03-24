@@ -83,7 +83,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		Seleccion<GenotipoF, FenotipoF, FitnessF> seleccion = factoriaSeleccion.getSeleccion(this.configuracion.getSeleccion_seleccionada());
 
 		//Seleccionamos los individuos por el mecanismo adecuado
-		this.poblacion = seleccion.Selecciona(individuos_iniciales, configuracion, getMaximizar());
+		this.poblacion = seleccion.selecciona(individuos_iniciales, configuracion, getMaximizar());
 	}
 
 	private void algReproduccion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> seleccionados){
@@ -158,7 +158,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 	
 	public void colocaLaelite(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> elite)
 	{
-		poblacion.sort(new ComparadorIndividuo(getMaximizar()));
+		poblacion.sort(new ComparadorIndividuo<GenotipoF, FenotipoF, FitnessF>(getMaximizar()));
 		
 		for(int i = 0; i < elite.size(); i++)
 		{

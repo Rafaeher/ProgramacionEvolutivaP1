@@ -12,7 +12,7 @@ public interface Seleccion<GenotipoS extends Genotipo, FenotipoS extends Fenotip
 {
 
 	//Si la funcion es de maximizar el boolean sera true
-	public ArrayList<Individuo<GenotipoS, FenotipoS, FitnessS>> Selecciona(ArrayList<Individuo<GenotipoS, FenotipoS, FitnessS>> poblacion,
+	public ArrayList<Individuo<GenotipoS, FenotipoS, FitnessS>> selecciona(ArrayList<Individuo<GenotipoS, FenotipoS, FitnessS>> poblacion,
 			Configuracion c, boolean maximizar);
 	
 }

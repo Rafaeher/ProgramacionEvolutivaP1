@@ -1,17 +1,11 @@
 package funcion;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.FenotipoReal;
-import fenotipo.caracteristica.FenotipoGenReal;
 import fitness.FitnessReal;
 import genotipo.Genotipo;
-import genotipo.GenotipoBinario;
-import genotipo.genes.GenBinario;
 import individuo.Individuo;
 
 public class F1<GenotipoF1 extends Genotipo> extends Funcion<GenotipoF1, FenotipoReal, FitnessReal> {

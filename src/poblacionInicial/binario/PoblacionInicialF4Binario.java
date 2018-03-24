@@ -14,6 +14,7 @@ import poblacionInicial.PoblacionInicial;
 
 public class PoblacionInicialF4Binario implements PoblacionInicial {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public ArrayList<Individuo<?, ?, ?>> getPoblacionInicial(Configuracion config)
 	{

@@ -1,8 +1,6 @@
 package seleccion;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.TreeMap;
 
 import configuracion.Configuracion;
 import fenotipo.Fenotipo;
@@ -20,7 +18,7 @@ public class Truncamiento<GenotipoT extends Genotipo, FenotipoT extends Fenotipo
 
 
 	@Override
-	public ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> Selecciona(
+	public ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> selecciona(
 			ArrayList<Individuo<GenotipoT, FenotipoT, FitnessT>> poblacion, Configuracion c, boolean maximizar) {
 		this.maximizar = maximizar;
 		return Alg(poblacion,c);

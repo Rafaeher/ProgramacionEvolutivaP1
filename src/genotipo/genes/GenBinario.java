@@ -40,7 +40,8 @@ public class GenBinario implements Cloneable
      *
      * @return codigo: el código del gen
      */
-    public ArrayList<Boolean> getCodigo()
+    @SuppressWarnings("unchecked")
+	public ArrayList<Boolean> getCodigo()
     {
         return (ArrayList<Boolean>) codigo.clone();
     }
@@ -117,7 +118,8 @@ public class GenBinario implements Cloneable
     	codigo.set(indiceBit, valor);
     }
     
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public Object clone()
     {
     	GenBinario clon = new GenBinario(longitud);

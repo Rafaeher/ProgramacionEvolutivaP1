@@ -4,8 +4,6 @@ import fenotipo.FenotipoReal;
 import genotipo.GenotipoBinario;
 import genotipo.genes.GenBinario;
 
-import java.util.ArrayList;
-
 public class DecodificadorBinarioReal extends DecodificadorEslabon
 {
     @Override
@@ -15,9 +13,6 @@ public class DecodificadorBinarioReal extends DecodificadorEslabon
         {
             FenotipoReal fenotipo = (FenotipoReal) fenotipoE;
             GenotipoBinario genotipo = (GenotipoBinario) genotipoE;
-            ArrayList<Double> caracteristicas = new ArrayList<>();
-
-
             for(int i = 0; i < genotipo.getNumGenes(); i++)
             {
                 int genesInt = GenBinario.genAInt(genotipo.getGen(i).getCodigo());

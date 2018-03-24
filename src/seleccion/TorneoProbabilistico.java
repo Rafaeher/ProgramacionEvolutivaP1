@@ -16,7 +16,7 @@ implements Seleccion<GenotipoTP, FenotipoTP, FitnessTP>{
 
 	@Override
 	public ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>
-	Selecciona(ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> poblacion,
+	selecciona(ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> poblacion,
 			Configuracion c, boolean maximizar)
 	{
 		ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>> poblacionfinal = new ArrayList<Individuo<GenotipoTP, FenotipoTP, FitnessTP>>();

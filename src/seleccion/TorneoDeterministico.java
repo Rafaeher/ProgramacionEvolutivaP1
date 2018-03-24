@@ -14,7 +14,7 @@ public class TorneoDeterministico<GenotipoTD extends Genotipo, FenotipoTD extend
 	
 	@Override
 	public ArrayList<Individuo<GenotipoTD, FenotipoTD, FitnessTD>>
-	Selecciona(ArrayList<Individuo<GenotipoTD, FenotipoTD, FitnessTD>> poblacion,
+	selecciona(ArrayList<Individuo<GenotipoTD, FenotipoTD, FitnessTD>> poblacion,
 			Configuracion c, boolean maximizar)
 	{
 		ArrayList<Individuo<GenotipoTD, FenotipoTD, FitnessTD>> poblacionfinal = new ArrayList<Individuo<GenotipoTD, FenotipoTD, FitnessTD>>();
