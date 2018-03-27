@@ -58,20 +58,7 @@ public class Configuracion {
 		this.parametrosf5 = parametrosf5;
 
 	}
-	
-	//getters y setters
-	/*public double getMinimo() {
-		return minimo;
-	}
-	public void setMinimo(double minimo) {
-		this.minimo = minimo;
-	}
-	public double getMaximo() {
-		return maximo;
-	}
-	public void setMaximo(double maximo) {
-		this.maximo = maximo;
-	}*/
+
 	public boolean isMaximizar() {
 		return maximizar;
 	}

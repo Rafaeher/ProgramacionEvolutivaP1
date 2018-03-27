@@ -14,9 +14,9 @@ public class GenotipoBinario implements Genotipo
     }
     
 	/**
-	 * Obtiene los cromosomas
+	 * Obtiene los genes
 	 *
-	 * @return cromosomas: los cromosomas
+	 * @return genes: los genes
 	 */
     public GenotipoBinario(ArrayList<GenBinario> genes) {
     	this.genes = genes;
@@ -35,9 +35,9 @@ public class GenotipoBinario implements Genotipo
 	}
 
 	/**
-	 * Obtiene el número de cromosomas que tiene el genotipo
+	 * Obtiene el número de genes que tiene el genotipo
 	 *
-	 * @return el número de cromsomas que tiene el genotipo
+	 * @return el número de genes que tiene el genotipo
 	 */
 	public int getNumGenes()
 	{
@@ -54,9 +54,9 @@ public class GenotipoBinario implements Genotipo
 	}
 
 	/**
-	 * Asigna un nuevo valor a los cromosomas;
+	 * Asigna un nuevo valor a los genes
 	 *
-	 * @param cromosomasE: cromosomas de entrada
+	 * @param genesE: genes de entrada
 	 */
 	public void setGenes(ArrayList<GenBinario> genesE)
 	{

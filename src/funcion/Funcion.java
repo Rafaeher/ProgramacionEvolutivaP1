@@ -44,8 +44,8 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 		while (it < configuracion.getNum_generaciones() -1)
         {
 			
-			if(configuracion.getElite() > 0){
-				//System.out.println("Elite: " + configuracion.getElite());
+			if(configuracion.getElite() > 0)
+			{
 				elite = (ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>>)calculaLosMejoresDeLaPoblacion(poblacion, configuracion.getElite());
 			}
 			it++;
@@ -62,14 +62,6 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 				colocaLaelite(elite);
 			}
 			
-			/*if (elite != null)
-			{
-				System.out.println("Iteración " + it);			
-				for(int i = 0; i < elite.size(); i++)
-					System.out.println("Élite " + (i + 1) + ": " + elite.get(i).getFitness().getValorReal());
-				System.out.println("-------------");
-			}
-			*/
 			pintar(it);
 			algEvalua(poblacion);
 		}
@@ -96,10 +88,6 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 
 	private void algMutacion(ArrayList<Individuo<GenotipoF, FenotipoF, FitnessF>> reproducidos)
 	{
-		//FactoriaMutacion factoriaMutacion = FactoriaMutacion.instanciar();
-		//Obtenemos el mecanismo de muta
-		//Mutacion mutacion = factoriaMutacion.getMutacion(this.configuracion.getMutacion_seleccionada());
-		//Mutamos y devolvemos una poblacion con los individuos mutados
 		for(int i = 0; i < reproducidos.size(); i++)
 		{
 				reproducidos.get(i).muta(configuracion.getMutacion_seleccionada(),configuracion.getProb_mutacion());
@@ -116,7 +104,7 @@ public abstract class Funcion<GenotipoF extends Genotipo, FenotipoF extends Feno
 			y_mejor_iteracion[it] = mejor_poblacion.getValorReal();
 		}
 		catch(Exception e){
-			System.out.println("la");
+			System.err.println("Error en pintar(int) de Funcion");
 		}
 		
 		if(getMaximizar()){
