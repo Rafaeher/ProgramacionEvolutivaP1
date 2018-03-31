@@ -126,5 +126,5 @@ public class GenBinario implements Cloneable
     	clon.codigo = (ArrayList<Boolean>) codigo.clone();
     	
     	return clon;
-    }
+    }  
 }
